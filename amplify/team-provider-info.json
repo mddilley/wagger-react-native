@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-wagger-dev-161348-authRole",
+      "UnauthRoleArn": "arn:aws:iam::761363285987:role/amplify-wagger-dev-161348-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::761363285987:role/amplify-wagger-dev-161348-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-wagger-dev-161348-deployment",
+      "UnauthRoleName": "amplify-wagger-dev-161348-unauthRole",
+      "StackName": "amplify-wagger-dev-161348",
+      "StackId": "arn:aws:cloudformation:us-east-1:761363285987:stack/amplify-wagger-dev-161348/f076dba0-278f-11eb-b593-0ebb325b25bf",
+      "AmplifyAppId": "d3q866iy32humk"
+    },
+    "categories": {
+      "auth": {
+        "wagger66c19341": {}
+      }
+    }
+  }
+}
