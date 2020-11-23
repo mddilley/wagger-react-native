@@ -1,7 +1,7 @@
 import React from "react";
-import { ScrollView, StatusBar } from "react-native";
+import { ScrollView, StatusBar, Text } from "react-native";
 import Amplify from "aws-amplify";
-import { Authenticator } from "aws-amplify-react-native";
+import { withAuthenticator } from "aws-amplify-react-native";
 import awsmobile from "./aws-exports";
 
 Amplify.configure({
@@ -31,14 +31,11 @@ const signUpConfig = {
   ],
 };
 
-const App = () => {
-  return (
-    <Authenticator usernameAttributes="email" signUpConfig={signUpConfig}>
-      <ScrollView>
-        <StatusBar barStyle="dark-content" />
-      </ScrollView>
-    </Authenticator>
-  );
-};
+const App = () => (
+  <ScrollView>
+    <StatusBar barStyle="dark-content" />
+    <Text>You made it into the app!</Text>
+  </ScrollView>
+);
 
-export default App;
+export default withAuthenticator(App);
