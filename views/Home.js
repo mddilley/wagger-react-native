@@ -1,13 +1,21 @@
-const { StatusBar } = require("react-native");
-
 import React from "react";
-import { ScrollView, Text } from "react-native";
+import { Header, Button, Icon } from "react-native-magnus";
+I;
 
 const Home = () => (
-  <ScrollView>
-    <StatusBar barStyle="dark-content" />
-    <Text>You made it into the app!</Text>
-  </ScrollView>
+  <Header
+    p="lg"
+    borderBottomWidth={1}
+    borderBottomColor="gray200"
+    alignment="center"
+    prefix={
+      <Button bg="transparent">
+        <Icon name="arrow-left" fontFamily="Feather" fontSize="2xl" />
+      </Button>
+    }
+  >
+    Wagger
+  </Header>
 );
 
 export default Home;

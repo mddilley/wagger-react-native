@@ -4,7 +4,7 @@ import Home from "../views/Home";
 
 const Routes = () => (
   <Router>
-    <Stack key="root">
+    <Stack hideNavBar key="root">
       <Scene key="home" component={Home} initial />
     </Stack>
   </Router>

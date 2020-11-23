@@ -1,7 +1,7 @@
 import React from "react";
 import Amplify from "aws-amplify";
 import Routes from "./routes/routes";
-import Home from "./views/Home";
+import { ThemeProvider } from "react-native-magnus";
 import { withAuthenticator } from "aws-amplify-react-native";
 import awsmobile from "./aws-exports";
 
@@ -32,6 +32,10 @@ const signUpConfig = {
   ],
 };
 
-const App = () => <Routes />;
+const App = () => (
+  <ThemeProvider>
+    <Routes />
+  </ThemeProvider>
+);
 
 export default withAuthenticator(App);
