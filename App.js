@@ -1,6 +1,7 @@
 import React from "react";
-import { ScrollView, StatusBar, Text } from "react-native";
 import Amplify from "aws-amplify";
+import Routes from "./routes/routes";
+import Home from "./views/Home";
 import { withAuthenticator } from "aws-amplify-react-native";
 import awsmobile from "./aws-exports";
 
@@ -31,11 +32,6 @@ const signUpConfig = {
   ],
 };
 
-const App = () => (
-  <ScrollView>
-    <StatusBar barStyle="dark-content" />
-    <Text>You made it into the app!</Text>
-  </ScrollView>
-);
+const App = () => <Routes />;
 
 export default withAuthenticator(App);
