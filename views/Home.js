@@ -1,6 +1,5 @@
 import React from "react";
 import { Header, Button, Icon } from "react-native-magnus";
-I;
 
 const Home = () => (
   <Header
