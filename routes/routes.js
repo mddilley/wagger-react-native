@@ -9,15 +9,11 @@ import Preferences from "../screens/Preferences";
 const Routes = () => (
   <Router>
     <Stack hideNavBar key="root">
-      <Scene key="home" title="Wagger" component={Home} initial />
-      <Scene key="my-playdates" title="My Playdates" component={MyPlaydates} />
-      <Scene key="all-playdates" title="Playdates" component={AllPlaydates} />
-      <Scene
-        key="past-playdates"
-        title="Previous Playdates"
-        component={PastPlaydates}
-      />
-      <Scene key="preferences" title="Preferences" component={Preferences} />
+      <Scene key="Wagger" component={Home} initial />
+      <Scene key="My Playdates" component={MyPlaydates} />
+      <Scene key="Playdates" component={AllPlaydates} />
+      <Scene key="Previous Playdates" component={PastPlaydates} />
+      <Scene key="Preferences" component={Preferences} />
     </Stack>
   </Router>
 );
