@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Routes from "./routes/routes";
 import AppHeader from "./components/AppHeader";
+import NavFab from "./components/NavFab";
 import { StatusBar, SafeAreaView } from "react-native";
 import { ThemeProvider } from "react-native-magnus";
 
@@ -46,6 +47,7 @@ const App = () => (
     <FlexSafeAreaView>
       <AppHeader />
       <Routes />
+      <NavFab />
     </FlexSafeAreaView>
   </ThemeProvider>
 );
