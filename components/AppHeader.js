@@ -1,7 +1,11 @@
 import React from "react";
-import { Text } from "react-native";
 import { Actions } from "react-native-router-flux";
-import { Button, Header, Icon } from "react-native-magnus";
+import { Button, Header, Icon, Text } from "react-native-magnus";
+import { textColors } from "../styles/colors";
+
+const appHeaderStyles = {
+  iconSize: "5xl",
+};
 
 const AppHeader = () => {
   const viewTitle = Actions.currentScene;
@@ -14,16 +18,32 @@ const AppHeader = () => {
       alignment="center"
       prefix={
         <Button bg="transparent">
-          <Icon name="arrow-left" fontFamily="Feather" fontSize="2xl" />
+          <Icon
+            name="arrow-left"
+            fontFamily="Feather"
+            fontSize={appHeaderStyles.iconSize}
+          />
         </Button>
       }
       suffix={
         <Button bg="transparent">
-          <Icon name="user" fontFamily="Feather" fontSize="2xl" />
+          <Icon
+            name="user"
+            fontFamily="Feather"
+            fontSize={appHeaderStyles.iconSize}
+          />
         </Button>
       }
     >
-      <Text>{viewTitle}</Text>
+      <Text
+        fontSize="3xl"
+        fontWeight="bold"
+        textTransform="uppercase"
+        color={textColors.header}
+        letterSpacing={1}
+      >
+        {viewTitle}
+      </Text>
     </Header>
   );
 };
