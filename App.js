@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Routes from "./routes/routes";
-import { Actions } from "react-native-router-flux";
-import AppHeader from "./components/AppHeader";
 import NavFab from "./components/NavFab";
 import { StatusBar, SafeAreaView } from "react-native";
 import { ThemeProvider } from "react-native-magnus";
@@ -43,13 +41,10 @@ export const FlexSafeAreaView = styled(SafeAreaView)`
 `;
 
 const App = () => {
-  const viewTitle = Actions.currentScene;
-
   return (
     <ThemeProvider>
       <StatusBar barStyle={"dark-content"} />
       <FlexSafeAreaView>
-        <AppHeader viewTitle={viewTitle} />
         <Routes />
         <NavFab />
       </FlexSafeAreaView>

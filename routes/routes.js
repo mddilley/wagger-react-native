@@ -1,5 +1,6 @@
 import React from "react";
-import { Router, Stack, Scene } from "react-native-router-flux";
+import { Router, Scene } from "react-native-router-flux";
+import AppHeader from "../components/AppHeader";
 import Home from "../screens/Home";
 import AllPlaydates from "../screens/AllPlaydates";
 import MyPlaydates from "../screens/MyPlaydates";
@@ -42,13 +43,13 @@ export const routesConfig = {
 
 const Routes = () => (
   <Router>
-    <Stack hideNavBar key="root">
+    <Scene navBar={AppHeader} key="root">
       {Object.entries(routesConfig).map(([key, config]) => {
         const { component, initial = false } = config;
 
         return <Scene key={key} component={component} intial={initial} />;
       })}
-    </Stack>
+    </Scene>
   </Router>
 );
 export default Routes;
