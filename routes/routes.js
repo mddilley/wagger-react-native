@@ -4,16 +4,23 @@ import Home from "../screens/Home";
 import AllPlaydates from "../screens/AllPlaydates";
 import MyPlaydates from "../screens/MyPlaydates";
 import PastPlaydates from "../screens/PastPlaydates";
-import Preferences from "../screens/Preferences";
+import Profile from "../screens/Profile";
+
+export const routeConfigs = {
+  wagger: { title: "Wagger", component: Home, initial: true },
+  myPlaydates: { title: "My Playdates", component: MyPlaydates },
+  allPlaydates: { title: "Playdates", component: AllPlaydates },
+  pastPlaydates: { title: "Past Playdates", component: PastPlaydates },
+  profile: { title: "Profile", component: Profile },
+};
 
 const Routes = () => (
   <Router>
     <Stack hideNavBar key="root">
-      <Scene key="Wagger" component={Home} initial />
-      <Scene key="My Playdates" component={MyPlaydates} />
-      <Scene key="Playdates" component={AllPlaydates} />
-      <Scene key="Previous Playdates" component={PastPlaydates} />
-      <Scene key="Preferences" component={Preferences} />
+      {Object.entries(routeConfigs).map(([key, config]) => {
+        const { component, initial = false } = config;
+        return <Scene key={key} component={component} intial={initial} />;
+      })}
     </Stack>
   </Router>
 );
