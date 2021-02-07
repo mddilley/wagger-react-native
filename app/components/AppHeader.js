@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Actions } from "react-native-router-flux";
 import { Button, Header, Icon, Text } from "react-native-magnus";
 import { textColors } from "../styles/colors";
@@ -9,8 +9,15 @@ const appHeaderStyles = {
 };
 
 const AppHeader = () => {
-  const currentSceneKey = Actions.currentScene;
-  const sceneTitle = routesConfig[currentSceneKey].title;
+  const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    // Setting up routes with tabs adds a _ prefix that must be removed
+    const currentSceneKey = Actions.currentScene;
+    const sceneTitle = routesConfig[currentSceneKey].title;
+
+    setTitle(sceneTitle);
+  }, [Actions.currentScene]);
 
   const handleProfilePress = () => Actions.profile();
 
@@ -50,7 +57,7 @@ const AppHeader = () => {
         color={textColors.main}
         letterSpacing={1}
       >
-        {sceneTitle}
+        {title}
       </Text>
     </Header>
   );
