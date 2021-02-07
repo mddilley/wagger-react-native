@@ -1,6 +1,6 @@
 import React from "react";
 import { Text } from "react-native";
 
-const Preferences = () => <Text>Test</Text>;
+const Preferences = () => <Text>Profile</Text>;
 
 export default Preferences;

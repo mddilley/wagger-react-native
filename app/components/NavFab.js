@@ -16,13 +16,13 @@ const NavFab = () => {
   );
 
   return (
-    <Fab bg={textColors.header} h={50} w={50}>
+    <Fab bg={textColors.main} h={50} w={50}>
       {Object.entries(fabRouteConfigs).map(([key, config]) => (
         <Button
           key={key}
           mt="lg"
           py="lg"
-          bg={textColors.header}
+          bg={textColors.main}
           color="white"
           prefix={
             config.icon && (

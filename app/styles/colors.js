@@ -1,3 +1,4 @@
 export const textColors = {
-  header: "green500",
+  main: "green500",
+  secondary: "gray900",
 };

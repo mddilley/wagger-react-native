@@ -12,6 +12,10 @@ const AppHeader = () => {
   const currentSceneKey = Actions.currentScene;
   const sceneTitle = routesConfig[currentSceneKey].title;
 
+  const handleProfilePress = () => Actions.profile();
+
+  const handleBackPress = () => Actions.pop();
+
   return (
     <Header
       p="lg"
@@ -19,19 +23,21 @@ const AppHeader = () => {
       borderBottomColor="gray200"
       alignment="center"
       prefix={
-        <Button bg="transparent">
+        <Button bg="transparent" onPress={handleBackPress}>
           <Icon
             name="arrow-left"
             fontFamily="Feather"
+            color={textColors.secondary}
             fontSize={appHeaderStyles.iconSize}
           />
         </Button>
       }
       suffix={
-        <Button bg="transparent">
+        <Button bg="transparent" onPress={handleProfilePress}>
           <Icon
             name="user"
             fontFamily="Feather"
+            color={textColors.secondary}
             fontSize={appHeaderStyles.iconSize}
           />
         </Button>
@@ -41,7 +47,7 @@ const AppHeader = () => {
         fontSize="3xl"
         fontWeight="bold"
         textTransform="uppercase"
-        color={textColors.header}
+        color={textColors.main}
         letterSpacing={1}
       >
         {sceneTitle}
