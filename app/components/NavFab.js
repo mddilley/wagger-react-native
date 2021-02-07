@@ -21,10 +21,19 @@ const NavFab = () => {
         <Button
           key={key}
           mt="lg"
-          px="xl"
           py="lg"
           bg={textColors.header}
           color="white"
+          prefix={
+            config.icon && (
+              <Icon
+                name={config.icon}
+                fontFamily={config.iconFontFamily}
+                fontSize={appHeaderStyles.iconSize}
+                color="white"
+              />
+            )
+          }
           suffix={
             <Icon
               name="arrowright"
@@ -36,6 +45,7 @@ const NavFab = () => {
           onPress={() => handleNavPress(key)}
         >
           <Text fontSize="xl" color="white" fontWeight="bold">
+            {"  "}
             {config.navText}
           </Text>
         </Button>
