@@ -15,8 +15,22 @@ const NavFab = () => {
     {}
   );
 
+  // TODO: Make the nav a div with all the buttons in it?
+
   return (
-    <Fab bg={textColors.main} h={50} w={50}>
+    <Fab
+      icon={
+        <Icon
+          fontFamily="Feather"
+          name="menu"
+          fontSize={appHeaderStyles.iconSize}
+          color="white"
+        />
+      }
+      bg={textColors.main}
+      h={50}
+      w={50}
+    >
       {Object.entries(fabRouteConfigs).map(([key, config]) => (
         <Button
           key={key}

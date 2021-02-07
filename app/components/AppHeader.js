@@ -10,9 +10,9 @@ const appHeaderStyles = {
 
 const AppHeader = () => {
   const [title, setTitle] = useState("");
+  const isHomeScene = title === "Wagger";
 
   useEffect(() => {
-    // Setting up routes with tabs adds a _ prefix that must be removed
     const currentSceneKey = Actions.currentScene;
     const sceneTitle = routesConfig[currentSceneKey].title;
 
@@ -30,14 +30,16 @@ const AppHeader = () => {
       borderBottomColor="gray200"
       alignment="center"
       prefix={
-        <Button bg="transparent" onPress={handleBackPress}>
-          <Icon
-            name="arrow-left"
-            fontFamily="Feather"
-            color={textColors.secondary}
-            fontSize={appHeaderStyles.iconSize}
-          />
-        </Button>
+        !isHomeScene && (
+          <Button bg="transparent" onPress={handleBackPress}>
+            <Icon
+              name="arrow-left"
+              fontFamily="Feather"
+              color={textColors.secondary}
+              fontSize={appHeaderStyles.iconSize}
+            />
+          </Button>
+        )
       }
       suffix={
         <Button bg="transparent" onPress={handleProfilePress}>

@@ -5,7 +5,7 @@ import PastPlaydates from "../screens/PastPlaydates";
 import Profile from "../screens/Profile";
 
 export const routesConfig = {
-  wagger: {
+  home: {
     title: "Wagger",
     component: Home,
     initial: true,
