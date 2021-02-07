@@ -2,14 +2,14 @@ import requests
 import json
 import os
 
-insert_user = """mutation ($email: Text!) {
+insert_user = """mutation InsertUser ($email: String!) {
     insert_Users(objects: {email: $email}) {
         affected_rows
     }
 }"""
 
 ADMIN_SECRET = os.environ["ADMIN_SECRET"]
-URL = os.environ.get("API_ENDPOINT")
+URL = os.environ["API_ENDPOINT"]
 HEADERS = {
     "Content-Type": "application/json",
     "X-Hasura-Admin-Secret": ADMIN_SECRET,
@@ -24,11 +24,15 @@ def lambda_handler(event, context):
     try:
         r = requests.post(
             URL,
-            json={"query": insert_user, "variables": {email: email}},
+            json={"query": insert_user, "variables": {"email": email}},
             headers=HEADERS,
         )
         r.raise_for_status()
 
-        return {"statusCode": 200, "body": json.dumps({"message": "success"})}
-    except requests.HTTPError as exception:
-        print(exception)
+    except:
+        return {
+            "statusCode": 400,
+            "body": json.dumps({"message": "Unable to create user"}),
+        }
+
+    return event
