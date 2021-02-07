@@ -2,7 +2,7 @@ import React from "react";
 import { Actions } from "react-native-router-flux";
 import { Button, Fab, Icon, Text } from "react-native-magnus";
 import { textColors } from "../styles/colors";
-import { routesConfig } from "../routes/routes";
+import { routesConfig } from "../routes/config";
 
 const appHeaderStyles = {
   iconSize: "2xl",
