@@ -1,8 +1,10 @@
-# Wagger (powered by React Native)
+# Wagger
 
-Bring your dogs together time and time again through this application. Users can sign up to add their dogs, create playdates for their dogs, or join other playdates created by other users.
+This is the React Native front end for Wagger.
 
-This app is built with React Native, React Native Router Flux, AWS Amplify (Cognito), and Magnus UI.
+## Developing
+
+To develop this app, I used both Expo and Xcode to preview and test updates both in macOS and on an iPhone. Expo provides an awesome experience that allows rapid feedback on code changes in a local environment, and the QR code scan feature in Expo paired with the iPhone app give the satisfaction of seeing your code live on a real device quickly.
 
 ## Getting Started
 
