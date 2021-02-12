@@ -14,9 +14,21 @@ This project started as a Ruby on Rails and JavaScript web application that I bu
 
 ## Back End
 
-- PostgreSQL database
-- Hasura for GraphQL API
+- PostgreSQL database through Heroku
+- Hasura GraphQL API
+
+## Code quality
+
+- ESLint
+- Prettier for JavaScript formatting
+- Black for Python formatting
+
+## Screenshots
+
+![Wagger mock home screen](/wagger-home.png)
 
 ## ERD
 
-## Screenshots
+### Created with DBeaver v7.3.4
+
+![Wagger Entity Relationship Diagram](/wagger.png)
