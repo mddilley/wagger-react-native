@@ -10,12 +10,11 @@ const appHeaderStyles = {
 
 const NavFab = () => {
   const handleNavPress = (key) => Actions[key]();
+
   const fabRouteConfigs = Object.entries(routesConfig).reduce(
     (acc, [key, config]) => (config.isFab ? { ...acc, [key]: config } : acc),
     {}
   );
-
-  // TODO: Make the nav a div with all the buttons in it?
 
   return (
     <Fab
