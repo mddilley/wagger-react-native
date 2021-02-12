@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Actions } from "react-native-router-flux";
 import { Button, Header, Icon, Text } from "react-native-magnus";
-import { textColors } from "../styles/colors";
+import { colors } from "../styles/colors";
 import { routesConfig } from "../routes/config";
 
 const appHeaderStyles = {
@@ -35,7 +35,7 @@ const AppHeader = () => {
             <Icon
               name="arrow-left"
               fontFamily="Feather"
-              color={textColors.secondary}
+              color={colors.secondary}
               fontSize={appHeaderStyles.iconSize}
             />
           </Button>
@@ -46,7 +46,7 @@ const AppHeader = () => {
           <Icon
             name="user"
             fontFamily="Feather"
-            color={textColors.secondary}
+            color={colors.secondary}
             fontSize={appHeaderStyles.iconSize}
           />
         </Button>
@@ -56,7 +56,7 @@ const AppHeader = () => {
         fontSize="3xl"
         fontWeight="bold"
         textTransform="uppercase"
-        color={textColors.main}
+        color={colors.main}
         letterSpacing={1}
       >
         {title}

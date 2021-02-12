@@ -1,7 +1,7 @@
 import React from "react";
 import { Actions } from "react-native-router-flux";
 import { Button, Fab, Icon, Text } from "react-native-magnus";
-import { textColors } from "../styles/colors";
+import { colors } from "../styles/colors";
 import { routesConfig } from "../routes/config";
 
 const appHeaderStyles = {
@@ -27,7 +27,7 @@ const NavFab = () => {
           color="white"
         />
       }
-      bg={textColors.main}
+      bg={colors.main}
       h={50}
       w={50}
     >
@@ -36,7 +36,7 @@ const NavFab = () => {
           key={key}
           mt="lg"
           py="lg"
-          bg={textColors.main}
+          bg={colors.main}
           color="white"
           prefix={
             config.icon && (
