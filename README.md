@@ -1,6 +1,6 @@
 # Wagger 🐶
 
-Brings dogs together time and time again. Users can sign up to add their dogs, create dog playdates, and join playdates created by others.
+Bring dogs together time and time again. Users can sign up to add their dogs, create dog playdates, and join playdates created by others.
 
 This project started as a Ruby on Rails and JavaScript web application that I built a couple of years ago. After moving deeper into the React ecosystem, I decided to reboot the idea as way to learn React Native.
 
