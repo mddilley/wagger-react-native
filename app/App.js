@@ -6,7 +6,7 @@ import { StatusBar, SafeAreaView } from "react-native";
 import { ThemeProvider } from "react-native-magnus";
 
 import Amplify from "aws-amplify";
-import { withAuthenticator } from "aws-amplify-react-native";
+import { Authenticator } from "aws-amplify-react-native";
 import awsmobile from "./aws-exports";
 
 Amplify.configure({
@@ -42,14 +42,16 @@ export const FlexSafeAreaView = styled(SafeAreaView)`
 
 const App = () => {
   return (
-    <ThemeProvider>
-      <StatusBar barStyle={"dark-content"} />
-      <FlexSafeAreaView>
-        <Routes />
-        <NavFab />
-      </FlexSafeAreaView>
-    </ThemeProvider>
+    <Authenticator>
+      <ThemeProvider>
+        <StatusBar barStyle={"dark-content"} />
+        <FlexSafeAreaView>
+          <Routes />
+          <NavFab />
+        </FlexSafeAreaView>
+      </ThemeProvider>
+    </Authenticator>
   );
 };
 
-export default withAuthenticator(App);
+export default App;
