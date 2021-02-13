@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Routes from "./routes/routes";
 import NavFab from "./components/NavFab";
@@ -7,8 +7,8 @@ import { ThemeProvider } from "react-native-magnus";
 
 import Amplify from "aws-amplify";
 import { Authenticator } from "aws-amplify-react-native";
-import { Auth, Hub } from "aws-amplify";
 import awsmobile from "./aws-exports";
+import { useUserSession } from "./auth/userSession";
 
 Amplify.configure({
   ...awsmobile,
@@ -42,21 +42,7 @@ export const FlexSafeAreaView = styled(SafeAreaView)`
 `;
 
 const App = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    let updateUser = async (authState) => {
-      try {
-        let user = await Auth.currentAuthenticatedUser();
-        setUser(user);
-      } catch {
-        setUser(null);
-      }
-    };
-    Hub.listen("auth", updateUser); // listen for login/signup events
-    updateUser(); // check manually the first time because we won't get a Hub event
-    return () => Hub.remove("auth", updateUser); // cleanup
-  }, []);
+  const { user } = useUserSession();
 
   return (
     <Authenticator hideDefault={true} amplifyConfig={signUpConfig}>
