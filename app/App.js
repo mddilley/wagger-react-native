@@ -6,7 +6,7 @@ import { StatusBar, SafeAreaView } from "react-native";
 import { ThemeProvider } from "react-native-magnus";
 
 import Amplify from "aws-amplify";
-import { Authenticator } from "aws-amplify-react-native";
+import { Authenticator, SignIn } from "aws-amplify-react-native";
 import awsmobile from "./aws-exports";
 import { useUserSession } from "./auth/userSession";
 
@@ -45,7 +45,11 @@ const App = () => {
   const { user } = useUserSession();
 
   return (
-    <Authenticator hideDefault={true} amplifyConfig={signUpConfig}>
+    <Authenticator
+    // hideDefault={true}
+    // amplifyConfig={signUpConfig}
+    >
+      {/* <SignIn /> */}
       {user && (
         <ThemeProvider>
           <StatusBar barStyle={"dark-content"} />

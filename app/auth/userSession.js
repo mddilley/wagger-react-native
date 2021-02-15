@@ -4,6 +4,8 @@ import { Auth, Hub } from "aws-amplify";
 export const useUserSession = () => {
   const [user, setUser] = useState(null);
 
+  const getUserEmail = () => user?.attributes?.email;
+
   useEffect(() => {
     let updateUser = async (authState) => {
       try {
@@ -13,10 +15,13 @@ export const useUserSession = () => {
         setUser(null);
       }
     };
-    Hub.listen("auth", updateUser); // listen for login/signup events
-    updateUser(); // check manually the first time because we won't get a Hub event
-    return () => Hub.remove("auth", updateUser); // cleanup
+
+    Hub.listen("auth", updateUser); // Listen for login/signup events
+
+    updateUser(); // Check manually the first time because we won't get a Hub event
+
+    return () => Hub.remove("auth", updateUser); // Cleanup
   }, []);
 
-  return { user };
+  return { user, getUserEmail };
 };
