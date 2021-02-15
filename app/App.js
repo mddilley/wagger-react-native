@@ -44,6 +44,7 @@ export const FlexSafeAreaView = styled(SafeAreaView)`
 
 const App = () => {
   const { user } = useUserSession();
+  console.log("In App", user);
 
   return (
     <ThemeProvider>
@@ -52,9 +53,9 @@ const App = () => {
         usernameAttributes="email"
         amplifyConfig={signUpConfig}
       >
+        {!user && <CustomLogin />}
         <StatusBar barStyle={"dark-content"} />
         <FlexSafeAreaView>
-          {!user && <CustomLogin />}
           {user && (
             <>
               <Routes />

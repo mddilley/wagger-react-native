@@ -1,15 +1,25 @@
 import React, { useState } from "react";
+import { Auth } from "aws-amplify";
 import { Button, Div, Input, Icon, Text } from "react-native-magnus";
 import { colors } from "../styles/colors";
 import images from "../assets/index";
 
 const CustomLogin = (props) => {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { user } = useUserSession();
 
-  const handleSignInPress = () => {
-    console.log(email, password);
-    console.log(props.authState);
+  const handleSignInPress = async () => {
+    // console.log("props", props);
+    // console.log("You pressed Sign In", email, password);
+    // console.log("user", user);
+
+    try {
+      await Auth.signIn(email, password);
+      // onStateChange(authState);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -58,6 +68,8 @@ const CustomLogin = (props) => {
         mt="sm"
         py="lg"
         placeholder="Email Address"
+        autoCapitalize="none"
+        value={email}
         onChangeText={(text) => setEmail(text)}
         suffix={<Icon fontFamily="MaterialIcons" name="email" fontSize="3xl" />}
       />
@@ -67,6 +79,7 @@ const CustomLogin = (props) => {
         placeholder="Password"
         secureTextEntry
         onChangeText={(text) => setPassword(text)}
+        value={password}
         suffix={
           <Icon fontFamily="MaterialIcons" name="vpn-key" fontSize="3xl" />
         }
@@ -79,13 +92,13 @@ const CustomLogin = (props) => {
         my="xl"
         px="lg"
         fontSize="lg"
-        onPress={handleSignInPress}
       >
         <Icon
           fontFamily="FontAwesome"
           name="check"
           fontSize="3xl"
           color={colors.white}
+          onPress={handleSignInPress}
         />
       </Button>
     </Div>
