@@ -1,6 +1,7 @@
 import React from "react";
 import { useUserSession } from "../auth/userSession";
 import { Div, Icon, Text, Button } from "react-native-magnus";
+import { messages } from "../content/messages";
 import { colors } from "../styles/colors";
 
 const Home = () => {
@@ -31,7 +32,7 @@ const Home = () => {
             textAlign="center"
             color={colors.white}
           >
-            Connect with others so our fuzzy friends can do what they do best!
+            {messages.home.welcome}
           </Text>
           <Div>
             <Text fontSize="3xl">🙌</Text>
@@ -57,8 +58,7 @@ const Home = () => {
             color={colors.secondary}
             textAlign="center"
           >
-            It looks like this is your first rodeo. 🤠 Let's get some details
-            that will help match you up and get your dog some new friends!
+            {messages.home.missingUserInfo}
           </Text>
           <Div>
             <Button
