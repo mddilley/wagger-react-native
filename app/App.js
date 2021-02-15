@@ -53,7 +53,7 @@ const App = () => {
         usernameAttributes="email"
         amplifyConfig={signUpConfig}
       >
-        {!user && <CustomLogin />}
+        <CustomLogin />
         <StatusBar barStyle={"dark-content"} />
         <FlexSafeAreaView>
           {user && (

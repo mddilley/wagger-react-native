@@ -1,19 +1,32 @@
 import React, { useState } from "react";
+import { Auth } from "aws-amplify";
+import { useUserSession } from "./userSession";
 import { Button, Div, Input, Icon, Text } from "react-native-magnus";
 import { colors } from "../styles/colors";
 import images from "../assets/index";
 
 const CustomLogin = (props) => {
+  const { user } = useUserSession();
   const { authState, onStateChange } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignInPress = async () => {
+    console.log("trying to log in");
     try {
       await Auth.signIn(email, password);
       onStateChange(authState);
+      console.log(user);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const signOut = async () => {
+    try {
+      await Auth.signOut();
+    } catch (error) {
+      console.log("Error signing out: ", error);
     }
   };
 
@@ -89,14 +102,26 @@ const CustomLogin = (props) => {
         my="xl"
         px="lg"
         fontSize="lg"
+        onPress={handleSignInPress}
       >
         <Icon
           fontFamily="FontAwesome"
           name="check"
           fontSize="3xl"
           color={colors.white}
-          onPress={handleSignInPress}
         />
+      </Button>
+      <Button
+        bg={colors.main}
+        block
+        py="lg"
+        bg={colors.main}
+        my="xl"
+        px="lg"
+        fontSize="lg"
+        onPress={signOut}
+      >
+        Sign out
       </Button>
     </Div>
   );
