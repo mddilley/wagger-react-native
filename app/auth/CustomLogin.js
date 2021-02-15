@@ -111,18 +111,6 @@ const CustomLogin = (props) => {
           color={colors.white}
         />
       </Button>
-      <Button
-        bg={colors.main}
-        block
-        py="lg"
-        bg={colors.main}
-        my="xl"
-        px="lg"
-        fontSize="lg"
-        onPress={signOut}
-      >
-        Sign out
-      </Button>
     </Div>
   );
 };

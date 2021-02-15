@@ -8,7 +8,7 @@ const appHeaderStyles = {
   iconSize: "2xl",
 };
 
-const NavFab = () => {
+const NavFab = (props) => {
   const handleNavPress = (key) => Actions[key]();
 
   const fabRouteConfigs = Object.entries(routesConfig).reduce(

@@ -44,26 +44,26 @@ export const FlexSafeAreaView = styled(SafeAreaView)`
 
 const App = () => {
   const { user } = useUserSession();
-  console.log("In App", user);
 
   return (
     <ThemeProvider>
-      <Authenticator
-        hideDefault={true}
-        usernameAttributes="email"
-        amplifyConfig={signUpConfig}
-      >
-        <CustomLogin />
-        <StatusBar barStyle={"dark-content"} />
-        <FlexSafeAreaView>
-          {user && (
-            <>
-              <Routes />
-              <NavFab />
-            </>
-          )}
-        </FlexSafeAreaView>
-      </Authenticator>
+      <StatusBar barStyle={"dark-content"} />
+      <FlexSafeAreaView>
+        {!user ? (
+          <Authenticator
+            hideDefault={true}
+            usernameAttributes="email"
+            amplifyConfig={signUpConfig}
+          >
+            <CustomLogin />
+          </Authenticator>
+        ) : (
+          <>
+            <Routes />
+            <NavFab />
+          </>
+        )}
+      </FlexSafeAreaView>
     </ThemeProvider>
   );
 };
