@@ -4,6 +4,7 @@ import Routes from "./routes/routes";
 import NavFab from "./components/NavFab";
 import { StatusBar, SafeAreaView } from "react-native";
 import { ThemeProvider } from "react-native-magnus";
+import { theme } from "./styles/theme";
 
 import Amplify from "aws-amplify";
 import { Authenticator } from "aws-amplify-react-native";
@@ -46,7 +47,7 @@ const App = () => {
   const { user } = useUserSession();
 
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <StatusBar barStyle={"dark-content"} />
       <FlexSafeAreaView>
         {!user ? (
