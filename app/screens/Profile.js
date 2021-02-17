@@ -1,9 +1,39 @@
 import React from "react";
-import { Text } from "react-native";
 import { Auth } from "aws-amplify";
+import { Button, Div, Icon } from "react-native-magnus";
+import { colors } from "../styles/colors";
 
-const signOut = () => Auth.signOut();
+const signOut = async () => {
+  try {
+    await Auth.signOut();
+  } catch (error) {
+    console.log("Error signing out: ", error);
+  }
+};
 
-const Preferences = () => <Text onPress={signOut}>Sign Out</Text>;
+const Preferences = () => (
+  <Div m="lg" p="xl">
+    <Button
+      bg={colors.danger}
+      block
+      py="lg"
+      my="xl"
+      px="lg"
+      fontSize="lg"
+      onPress={signOut}
+      suffix={
+        <Icon
+          ml="md"
+          fontFamily="MaterialCommunityIcons"
+          name="logout"
+          fontSize="3xl"
+          color={colors.white}
+        />
+      }
+    >
+      Sign out
+    </Button>
+  </Div>
+);
 
 export default Preferences;

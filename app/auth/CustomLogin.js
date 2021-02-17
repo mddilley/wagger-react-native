@@ -22,14 +22,6 @@ const CustomLogin = (props) => {
     }
   };
 
-  const signOut = async () => {
-    try {
-      await Auth.signOut();
-    } catch (error) {
-      console.log("Error signing out: ", error);
-    }
-  };
-
   return (
     <Div m="lg" p="xl">
       <Div
@@ -79,6 +71,7 @@ const CustomLogin = (props) => {
         autoCapitalize="none"
         value={email}
         autoCompleteType="email"
+        autoCorrect={false}
         onChangeText={(text) => setEmail(text)}
         suffix={<Icon fontFamily="MaterialIcons" name="email" fontSize="3xl" />}
       />
@@ -89,6 +82,7 @@ const CustomLogin = (props) => {
         secureTextEntry
         onChangeText={(text) => setPassword(text)}
         autoCompleteType="password"
+        autoCorrect={false}
         value={password}
         suffix={
           <Icon fontFamily="MaterialIcons" name="vpn-key" fontSize="3xl" />
@@ -98,7 +92,6 @@ const CustomLogin = (props) => {
         bg={colors.main}
         block
         py="lg"
-        bg={colors.main}
         my="xl"
         px="lg"
         fontSize="lg"
@@ -111,6 +104,13 @@ const CustomLogin = (props) => {
           color={colors.white}
         />
       </Button>
+      <Div mx="xl" alignItems="center" justifyContent="center" flexDir="row">
+        <Div h={1} flex={1} bg={colors.light} />
+        <Text px="lg" fontSize="lg" color={colors.light}>
+          Or
+        </Text>
+        <Div h={1} flex={1} bg={colors.light} />
+      </Div>
     </Div>
   );
 };
