@@ -1,4 +1,6 @@
 import React from "react";
+import { useQuery } from "@apollo/client";
+import { GET_USERS } from "../queries/users";
 import { Auth } from "aws-amplify";
 import { useUserSession } from "../auth/userSession";
 import { Button, Div, Icon } from "react-native-magnus";
@@ -13,9 +15,11 @@ const signOut = async () => {
 };
 
 const Preferences = () => {
-  const { getUserToken } = useUserSession();
+  const { getUserJwt } = useUserSession();
 
-  console.log(getUserToken());
+  const { loading, error, data } = useQuery(GET_USERS);
+
+  console.log(getUserJwt(), data, error);
 
   return (
     <Div m="lg" p="xl">

@@ -1,15 +1,22 @@
 import React from "react";
-import styled from "styled-components";
+import CustomLogin from "./auth/CustomLogin";
 import Routes from "./routes/routes";
 import NavFab from "./components/NavFab";
 import { StatusBar, SafeAreaView } from "react-native";
+import styled from "styled-components";
 import { ThemeProvider } from "react-native-magnus";
 import { theme } from "./styles/theme";
 
 import Amplify from "aws-amplify";
 import { Authenticator } from "aws-amplify-react-native";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import CustomLogin from "./auth/CustomLogin";
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+
 import awsmobile from "./aws-exports";
 import { useUserSession } from "./auth/userSession";
 
@@ -49,15 +56,15 @@ export const FlexSafeAreaView = styled(SafeAreaView)`
 `;
 
 const App = () => {
-  const { user } = useUserSession();
+  const { user, getUserJwt } = useUserSession();
 
   // Setup Apollo Links to connect to endpoint and add headers
   const httpLink = createHttpLink({ uri: GRAPHQL_ENDPOINT });
 
   const authLink = setContext((_, { headers }) => {
     // Get the authentication token and role from user if it exists
-    const token = getJwt(user);
-    const role = getHighestRole(user);
+    const token = getUserJwt();
+    const role = "user";
 
     // Return the headers and role to the context so httpLink can read them
     return {
