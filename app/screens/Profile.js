@@ -1,7 +1,7 @@
 import React from "react";
 import { Auth } from "aws-amplify";
 import { useUserSession } from "../auth/userSession";
-import { Button, Div, Icon, Text } from "react-native-magnus";
+import { Button, Div, Icon } from "react-native-magnus";
 import { colors } from "../styles/colors";
 
 const signOut = async () => {
@@ -13,9 +13,9 @@ const signOut = async () => {
 };
 
 const Preferences = () => {
-  const { user } = useUserSession();
+  const { getUserToken } = useUserSession();
 
-  console.log(user?.signInUserSession?.idToken?.jwtToken);
+  console.log(getUserToken());
 
   return (
     <Div m="lg" p="xl">

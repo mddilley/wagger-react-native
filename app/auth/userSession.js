@@ -6,6 +6,8 @@ export const useUserSession = () => {
 
   const getUserEmail = () => user?.attributes?.email;
 
+  const getUserJwt = () => user?.signInUserSession?.idToken?.jwtToken;
+
   useEffect(() => {
     let updateUser = async (authState) => {
       try {
@@ -23,5 +25,5 @@ export const useUserSession = () => {
     return () => Hub.remove("auth", updateUser); // Cleanup
   }, []);
 
-  return { user, getUserEmail };
+  return { user, getUserEmail, getUserJwt };
 };
