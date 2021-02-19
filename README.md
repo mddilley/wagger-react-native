@@ -10,6 +10,7 @@ What can I say? I love dogs!
 
 - React Native
 - React Native Router Flux for navigation
+- Apollo Client for data queries and mutations
 - AWS Cognito and Amplify for authorization and authentication
 - AWS Lambda for data events
 - Magnus UI for building the UI
