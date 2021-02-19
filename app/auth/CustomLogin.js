@@ -21,7 +21,7 @@ const CustomLogin = (props) => {
   return (
     <Div m="lg" p="xl">
       <Div
-        rounded="xl"
+        rounded="md"
         bgImg={images.loginBackground}
         h={300}
         color={colors.main}

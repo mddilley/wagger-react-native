@@ -1,16 +1,14 @@
 import React from "react";
-import { Actions } from "react-native-router-flux";
 import { Button, Fab, Icon, Text } from "react-native-magnus";
 import { colors } from "../styles/colors";
-import { routesConfig } from "../routes/config";
+import { routesConfig } from "../nav/config";
+import { handleNavPress } from "../nav/navHandlers";
 
 const appHeaderStyles = {
   iconSize: "2xl",
 };
 
-const NavFab = (props) => {
-  const handleNavPress = (key) => Actions[key]();
-
+const NavFab = () => {
   const fabRouteConfigs = Object.entries(routesConfig).reduce(
     (acc, [key, config]) => (config.isFab ? { ...acc, [key]: config } : acc),
     {}

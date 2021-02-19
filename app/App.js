@@ -1,6 +1,6 @@
 import React from "react";
 import CustomLogin from "./auth/CustomLogin";
-import Routes from "./routes/routes";
+import Routes from "./nav/routes";
 import NavFab from "./components/NavFab";
 import { StatusBar, SafeAreaView } from "react-native";
 import styled from "styled-components";
@@ -8,7 +8,6 @@ import { ThemeProvider } from "react-native-magnus";
 import { theme } from "./styles/theme";
 
 import Amplify from "aws-amplify";
-import { Authenticator } from "aws-amplify-react-native";
 import {
   ApolloProvider,
   ApolloClient,
@@ -30,26 +29,6 @@ Amplify.configure({
     disabled: true,
   },
 });
-
-const signUpConfig = {
-  hideAllDefaults: true,
-  signUpFields: [
-    {
-      label: "Email",
-      key: "email",
-      required: true,
-      displayOrder: 1,
-      type: "string",
-    },
-    {
-      label: "Password",
-      key: "password",
-      required: true,
-      displayOrder: 2,
-      type: "password",
-    },
-  ],
-};
 
 export const FlexSafeAreaView = styled(SafeAreaView)`
   flex: 1;
@@ -87,13 +66,7 @@ const App = () => {
       <StatusBar barStyle={"dark-content"} />
       <FlexSafeAreaView>
         {!user ? (
-          <Authenticator
-            hideDefault={true}
-            usernameAttributes="email"
-            amplifyConfig={signUpConfig}
-          >
-            <CustomLogin />
-          </Authenticator>
+          <CustomLogin />
         ) : (
           <ApolloProvider client={client}>
             <Routes />

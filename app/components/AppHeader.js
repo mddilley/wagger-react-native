@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Actions } from "react-native-router-flux";
 import { Button, Header, Icon, Text } from "react-native-magnus";
 import { colors } from "../styles/colors";
-import { routesConfig } from "../routes/config";
+import { routesConfig } from "../nav/config";
+import { handleBackPress, handleNavPress } from "../nav/navHandlers";
 
 const appHeaderStyles = {
   iconSize: "5xl",
@@ -18,10 +19,6 @@ const AppHeader = () => {
 
     setTitle(sceneTitle);
   }, [Actions.currentScene]);
-
-  const handleProfilePress = () => Actions.profile();
-
-  const handleBackPress = () => Actions.pop();
 
   return (
     <Header
@@ -42,7 +39,7 @@ const AppHeader = () => {
         )
       }
       suffix={
-        <Button bg="transparent" onPress={handleProfilePress}>
+        <Button bg="transparent" onPress={() => handleNavPress("profile")}>
           <Icon
             name="user"
             fontFamily="Feather"

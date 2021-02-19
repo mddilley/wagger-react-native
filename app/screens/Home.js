@@ -1,15 +1,10 @@
 import React from "react";
-import { useUserSession } from "../auth/userSession";
 import { Div, Icon, Text, Button } from "react-native-magnus";
 import { messages } from "../content/messages";
 import { colors } from "../styles/colors";
+import { handleNavPress } from "../nav/navHandlers";
 
 const Home = () => {
-  const { user, getUserEmail } = useUserSession();
-  console.log(user);
-
-  console.log(getUserEmail());
-
   return (
     <Div mx="xl" mt="xl" mb="md">
       <Div rounded="xl" h={150} color={colors.main} shadow="md">
@@ -70,6 +65,7 @@ const Home = () => {
               suffix={
                 <Icon name="arrowright" ml="md" fontSize="md" color="white" />
               }
+              onPress={() => handleNavPress("profile")}
             >
               Let's do it
             </Button>
