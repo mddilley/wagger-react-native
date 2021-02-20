@@ -24,7 +24,7 @@ const Profile = () => {
   // Get JWT for connection testing
   console.log(getUserJwt());
 
-  return loading ? (
+  return true ? (
     <Loader />
   ) : (
     <Div m="lg" p="xl">

@@ -1,18 +1,19 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Auth } from "aws-amplify";
 import { Button, Div, Input, Icon, Text } from "react-native-magnus";
 import { colors } from "../styles/colors";
 import images from "../assets/index";
 
-const CustomLogin = (props) => {
-  const { authState, onStateChange } = props;
+const CustomLogin = () => {
+  const { register, handleSubmit, watch, errors } = useForm();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignInPress = async () => {
     try {
       await Auth.signIn(email, password);
-      onStateChange(authState);
     } catch (error) {
       console.log(error);
     }
