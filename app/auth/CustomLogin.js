@@ -103,6 +103,11 @@ const CustomLogin = () => {
         </Text>
         <Div h={1} flex={1} bg={colors.light} />
       </Div>
+      <Button bg={colors.main} block py="lg" my="xl" px="lg" fontSize="lg">
+        <Text color={colors.white} fontSize="lg" fontWeight="bold">
+          Sign Up
+        </Text>
+      </Button>
     </Div>
   );
 };
