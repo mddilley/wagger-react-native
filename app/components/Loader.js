@@ -1,7 +1,6 @@
 import React from "react";
 import { ActivityIndicator } from "react-native";
 import { Div } from "react-native-magnus";
-import { colors } from "../styles/colors";
 
 const Loader = () => (
   <Div
@@ -14,7 +13,7 @@ const Loader = () => (
     alignItems="center"
     flexDir="column"
   >
-    <ActivityIndicator size="large" color={colors.main} />
+    <ActivityIndicator size="large" />
   </Div>
 );
 

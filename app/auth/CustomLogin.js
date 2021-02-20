@@ -1,17 +1,20 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React from "react";
+import { useForm, Controller } from "react-hook-form";
 import { Auth } from "aws-amplify";
 import { Button, Div, Input, Icon, Text } from "react-native-magnus";
 import { colors } from "../styles/colors";
 import images from "../assets/index";
 
 const CustomLogin = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { handleSubmit, control, touched, errors } = useForm();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const onSubmit = (data) => {
+    const { email, password } = data;
 
-  const handleSignInPress = async () => {
+    signIn({ email, password });
+  };
+
+  const signIn = async ({ email, password }) => {
     try {
       await Auth.signIn(email, password);
     } catch (error) {
@@ -61,29 +64,49 @@ const CustomLogin = () => {
         </Div>
       </Div>
       <Text color="gray500" mt="sm"></Text>
-      <Input
-        mt="sm"
-        py="lg"
-        placeholder="Email Address"
-        autoCapitalize="none"
-        value={email}
-        autoCompleteType="email"
-        autoCorrect={false}
-        onChangeText={(text) => setEmail(text)}
-        suffix={<Icon fontFamily="MaterialIcons" name="email" fontSize="3xl" />}
+      <Controller
+        control={control}
+        render={({ onChange, onBlur, value }) => (
+          <Input
+            mt="sm"
+            py="lg"
+            placeholder="Email Address"
+            autoCapitalize="none"
+            value={value}
+            autoCompleteType="email"
+            autoCorrect={false}
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            suffix={
+              <Icon fontFamily="MaterialIcons" name="email" fontSize="3xl" />
+            }
+          />
+        )}
+        name="email"
+        rules={{ required: true }}
+        defaultValue=""
       />
-      <Input
-        mt="xl"
-        py="lg"
-        placeholder="Password"
-        secureTextEntry
-        onChangeText={(text) => setPassword(text)}
-        autoCompleteType="password"
-        autoCorrect={false}
-        value={password}
-        suffix={
-          <Icon fontFamily="MaterialIcons" name="vpn-key" fontSize="3xl" />
-        }
+      <Controller
+        control={control}
+        render={({ onChange, onBlur, value }) => (
+          <Input
+            mt="xl"
+            py="lg"
+            placeholder="Password"
+            secureTextEntry
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            autoCompleteType="password"
+            autoCorrect={false}
+            value={value}
+            suffix={
+              <Icon fontFamily="MaterialIcons" name="vpn-key" fontSize="3xl" />
+            }
+          />
+        )}
+        name="password"
+        rules={{ required: true }}
+        defaultValue=""
       />
       <Button
         bg={colors.main}
@@ -92,7 +115,7 @@ const CustomLogin = () => {
         my="xl"
         px="lg"
         fontSize="lg"
-        onPress={handleSignInPress}
+        onPress={handleSubmit(onSubmit)}
       >
         <Icon
           fontFamily="FontAwesome"
