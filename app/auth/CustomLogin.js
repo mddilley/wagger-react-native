@@ -1,13 +1,22 @@
 import React from "react";
+import AuthLogo from "./AuthLogo";
 import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { Auth } from "aws-amplify";
 import { Button, Div, Input, Icon, Text } from "react-native-magnus";
 import InputErrorText from "../components/InputErrorText";
 import { colors } from "../styles/colors";
-import images from "../assets/index";
+
+const schema = yup.object().shape({
+  email: yup.string().min(1).required().email(),
+  password: yup.string().required(),
+});
 
 const CustomLogin = () => {
-  const { handleSubmit, control, touched, errors } = useForm();
+  const { handleSubmit, control, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const onSubmit = (data) => {
     const { email, password } = data;
@@ -25,45 +34,7 @@ const CustomLogin = () => {
 
   return (
     <Div m="lg" p="xl">
-      <Div
-        rounded="md"
-        bgImg={images.loginBackground}
-        h={300}
-        color={colors.main}
-        shadow="md"
-      >
-        <Div
-          rounded="md"
-          row
-          px="md"
-          py="md"
-          m="lg"
-          flex={1}
-          justifyContent="center"
-          alignItems="center"
-          flexDir="column"
-        >
-          <Div p="md" rounded="md" bg={colors.main} shadow="md" row>
-            <Text
-              fontSize="6xl"
-              px="lg"
-              py="md"
-              fontWeight="bold"
-              textAlign="center"
-              color={colors.white}
-            >
-              Wagger
-            </Text>
-            <Icon
-              fontFamily="MaterialCommunityIcons"
-              name="dog-side"
-              fontSize="6xl"
-              pr="lg"
-              color={colors.white}
-            />
-          </Div>
-        </Div>
-      </Div>
+      <AuthLogo />
       <Text color="gray500" mt="sm"></Text>
       <Controller
         control={control}
@@ -84,10 +55,9 @@ const CustomLogin = () => {
           />
         )}
         name="email"
-        rules={{ required: true }}
         defaultValue=""
       />
-      <InputErrorText touched={touched?.email} errors={errors?.email} />
+      <InputErrorText errors={errors?.email} />
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
@@ -107,10 +77,9 @@ const CustomLogin = () => {
           />
         )}
         name="password"
-        rules={{ required: true }}
         defaultValue=""
       />
-      <InputErrorText touched={touched?.password} errors={errors?.password} />
+      <InputErrorText errors={errors?.password} />
       <Button
         bg={colors.main}
         block
