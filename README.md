@@ -30,7 +30,10 @@ What can I say? I love dogs!
 
 ## Screenshots
 
-![Wagger mock home screen](/wagger-home.png)
+<p float="left">
+  <img src="./wagger-login.png" /> 
+  <img src="./wagger-home.png" />
+</p>
 
 ## ERD
 
