@@ -2,6 +2,7 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Auth } from "aws-amplify";
 import { Button, Div, Input, Icon, Text } from "react-native-magnus";
+import InputErrorText from "../components/InputErrorText";
 import { colors } from "../styles/colors";
 import images from "../assets/index";
 
@@ -86,6 +87,7 @@ const CustomLogin = () => {
         rules={{ required: true }}
         defaultValue=""
       />
+      <InputErrorText touched={touched?.email} errors={errors?.email} />
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
@@ -108,6 +110,7 @@ const CustomLogin = () => {
         rules={{ required: true }}
         defaultValue=""
       />
+      <InputErrorText touched={touched?.password} errors={errors?.password} />
       <Button
         bg={colors.main}
         block
