@@ -1,18 +1,36 @@
 import React from "react";
+import OrDivider from "./OrDivider";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Auth } from "aws-amplify";
+import { passwordValidation } from "../auth/validation";
 import { Button, Div, Input, Icon, Text } from "react-native-magnus";
 import InputErrorText from "../components/InputErrorText";
 import { colors } from "../styles/colors";
 import { handleNavPress } from "../nav/navHandlers";
 
+const schema = yup.object().shape({
+  email: yup.string().required().email(),
+  password: passwordValidation,
+  confirmPassword: passwordValidation.oneOf(
+    [yup.ref("password"), null],
+    "Passwords must match"
+  ),
+});
+
 const CustomSignup = () => {
+  const { handleSubmit, control, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data) => {
+    // Collect sign up details and sign up with Amplify
+  };
+
   return (
     <Div m="lg" px="xl">
       <Text color="gray500" mt="sm"></Text>
-      {/* <Controller
+      <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
           <Input
@@ -44,7 +62,6 @@ const CustomSignup = () => {
             secureTextEntry
             onBlur={onBlur}
             onChangeText={(value) => onChange(value)}
-            autoCompleteType="password"
             autoCorrect={false}
             value={value}
             suffix={
@@ -55,7 +72,28 @@ const CustomSignup = () => {
         name="password"
         defaultValue=""
       />
-      <InputErrorText errors={errors?.password} /> */}
+      <InputErrorText errors={errors?.password} />
+      <Controller
+        control={control}
+        render={({ onChange, onBlur, value }) => (
+          <Input
+            mt="xl"
+            py="lg"
+            placeholder="Confirm Password"
+            secureTextEntry
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            autoCorrect={false}
+            value={value}
+            suffix={
+              <Icon fontFamily="MaterialIcons" name="vpn-key" fontSize="3xl" />
+            }
+          />
+        )}
+        name="confirmPassword"
+        defaultValue=""
+      />
+      <InputErrorText errors={errors?.password} />
       <Button
         bg={colors.main}
         block
@@ -63,7 +101,7 @@ const CustomSignup = () => {
         my="xl"
         px="lg"
         fontSize="lg"
-        // onPress={handleSubmit(onSubmit)}
+        onPress={handleSubmit(onSubmit)}
       >
         <Icon
           fontFamily="FontAwesome"
@@ -72,13 +110,7 @@ const CustomSignup = () => {
           color={colors.white}
         />
       </Button>
-      <Div mx="xl" alignItems="center" justifyContent="center" flexDir="row">
-        <Div h={1} flex={1} bg={colors.light} />
-        <Text px="lg" fontSize="lg" color={colors.light}>
-          Or
-        </Text>
-        <Div h={1} flex={1} bg={colors.light} />
-      </Div>
+      <OrDivider />
       <Button
         bg={colors.main}
         block

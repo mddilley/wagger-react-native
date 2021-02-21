@@ -1,8 +1,9 @@
 import React from "react";
-import AuthLogo from "./AuthLogo";
+import OrDivider from "./OrDivider";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { passwordValidation } from "../auth/validation";
 import { Auth } from "aws-amplify";
 import { Button, Div, Input, Icon, Text } from "react-native-magnus";
 import InputErrorText from "../components/InputErrorText";
@@ -11,7 +12,7 @@ import { colors } from "../styles/colors";
 
 const schema = yup.object().shape({
   email: yup.string().required().email(),
-  password: yup.string().required(),
+  password: passwordValidation,
 });
 
 const CustomLogin = () => {
@@ -96,13 +97,7 @@ const CustomLogin = () => {
           color={colors.white}
         />
       </Button>
-      <Div mx="xl" alignItems="center" justifyContent="center" flexDir="row">
-        <Div h={1} flex={1} bg={colors.light} />
-        <Text px="lg" fontSize="lg" color={colors.light}>
-          Or
-        </Text>
-        <Div h={1} flex={1} bg={colors.light} />
-      </Div>
+      <OrDivider />
       <Button
         bg={colors.main}
         block
