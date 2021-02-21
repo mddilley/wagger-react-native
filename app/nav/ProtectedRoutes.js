@@ -2,15 +2,7 @@ import React from "react";
 import { Router, Scene } from "react-native-router-flux";
 
 import AppHeader from "../components/AppHeader";
-import { routesConfig } from "./config";
-
-const MyTransitionSpec = {
-  duration: 0,
-};
-
-const transitionConfig = () => ({
-  transitionSpec: MyTransitionSpec,
-});
+import { routesConfig, transitionConfig } from "./config";
 
 const ProtectedRoutes = () => (
   <Router>

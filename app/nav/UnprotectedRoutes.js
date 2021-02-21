@@ -1,21 +1,16 @@
 import React from "react";
+import AuthLogo from "../auth/AuthLogo";
 import CustomLogin from "../auth/CustomLogin";
 import CustomSignup from "../auth/CustomSignup";
 import { Router, Scene } from "react-native-router-flux";
-
-const MyTransitionSpec = {
-  duration: 0,
-};
-
-const transitionConfig = () => ({
-  transitionSpec: MyTransitionSpec,
-});
+import { Div } from "react-native-magnus";
+import { transitionConfig } from "../nav/config";
 
 const UnprotectedRoutes = () => (
   <Router>
-    <Scene key="root" transitionConfig={transitionConfig}>
-      <Scene key="login" component={CustomLogin} initial />
-      <Scene key="login" component={CustomSignup} />
+    <Scene header={<AuthLogo />} key="root" transitionConfig={transitionConfig}>
+      <Scene key="login" component={CustomLogin} />
+      <Scene key="signup" component={CustomSignup} />
     </Scene>
   </Router>
 );

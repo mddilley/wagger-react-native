@@ -1,42 +1,18 @@
 import React from "react";
-import AuthLogo from "./AuthLogo";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Auth } from "aws-amplify";
 import { Button, Div, Input, Icon, Text } from "react-native-magnus";
 import InputErrorText from "../components/InputErrorText";
-import { handleNavPress } from "../nav/navHandlers";
 import { colors } from "../styles/colors";
+import { handleNavPress } from "../nav/navHandlers";
 
-const schema = yup.object().shape({
-  email: yup.string().required().email(),
-  password: yup.string().required(),
-});
-
-const CustomLogin = () => {
-  const { handleSubmit, control, errors } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  const onSubmit = (data) => {
-    const { email, password } = data;
-
-    signIn({ email, password });
-  };
-
-  const signIn = async ({ email, password }) => {
-    try {
-      await Auth.signIn(email, password);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+const CustomSignup = () => {
   return (
     <Div m="lg" px="xl">
       <Text color="gray500" mt="sm"></Text>
-      <Controller
+      {/* <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
           <Input
@@ -79,7 +55,7 @@ const CustomLogin = () => {
         name="password"
         defaultValue=""
       />
-      <InputErrorText errors={errors?.password} />
+      <InputErrorText errors={errors?.password} /> */}
       <Button
         bg={colors.main}
         block
@@ -87,7 +63,7 @@ const CustomLogin = () => {
         my="xl"
         px="lg"
         fontSize="lg"
-        onPress={handleSubmit(onSubmit)}
+        // onPress={handleSubmit(onSubmit)}
       >
         <Icon
           fontFamily="FontAwesome"
@@ -110,14 +86,14 @@ const CustomLogin = () => {
         my="xl"
         px="lg"
         fontSize="lg"
-        onPress={() => handleNavPress("signup")}
+        onPress={() => handleNavPress("login")}
       >
         <Text color={colors.white} fontSize="lg" fontWeight="bold">
-          Sign Up
+          Login
         </Text>
       </Button>
     </Div>
   );
 };
 
-export default CustomLogin;
+export default CustomSignup;

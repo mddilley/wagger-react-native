@@ -45,3 +45,11 @@ export const routesConfig = {
     isFab: false,
   },
 };
+
+const MyTransitionSpec = {
+  duration: 0,
+};
+
+export const transitionConfig = () => ({
+  transitionSpec: MyTransitionSpec,
+});
