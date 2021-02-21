@@ -1,5 +1,7 @@
 import React from "react";
 import OrDivider from "./OrDivider";
+import { Auth } from "aws-amplify";
+import { signIn } from "./CustomLogin";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -23,8 +25,26 @@ const CustomSignup = () => {
     resolver: yupResolver(schema),
   });
 
+  const signUp = async (email, password) => {
+    try {
+      const { user } = await Auth.signUp({
+        username: email,
+        password,
+        attributes: {
+          email,
+        },
+      });
+      console.log(user);
+      signIn(email, password);
+    } catch (error) {
+      console.log("error signing up:", error);
+    }
+  };
+
   const onSubmit = (data) => {
-    // Collect sign up details and sign up with Amplify
+    const { email, password } = data;
+
+    signUp(email, password);
   };
 
   return (
@@ -93,7 +113,7 @@ const CustomSignup = () => {
         name="confirmPassword"
         defaultValue=""
       />
-      <InputErrorText errors={errors?.password} />
+      <InputErrorText errors={errors?.confirmPassword} />
       <Button
         bg={colors.main}
         block
@@ -103,12 +123,9 @@ const CustomSignup = () => {
         fontSize="lg"
         onPress={handleSubmit(onSubmit)}
       >
-        <Icon
-          fontFamily="FontAwesome"
-          name="check"
-          fontSize="3xl"
-          color={colors.white}
-        />
+        <Text color={colors.white} fontSize="lg" fontWeight="bold">
+          Sign Up
+        </Text>
       </Button>
       <OrDivider />
       <Button

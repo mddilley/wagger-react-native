@@ -15,6 +15,14 @@ const schema = yup.object().shape({
   password: passwordValidation,
 });
 
+export const signIn = async ({ email, password }) => {
+  try {
+    await Auth.signIn(email, password);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const CustomLogin = () => {
   const { handleSubmit, control, errors } = useForm({
     resolver: yupResolver(schema),
@@ -24,14 +32,6 @@ const CustomLogin = () => {
     const { email, password } = data;
 
     signIn({ email, password });
-  };
-
-  const signIn = async ({ email, password }) => {
-    try {
-      await Auth.signIn(email, password);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -90,12 +90,9 @@ const CustomLogin = () => {
         fontSize="lg"
         onPress={handleSubmit(onSubmit)}
       >
-        <Icon
-          fontFamily="FontAwesome"
-          name="check"
-          fontSize="3xl"
-          color={colors.white}
-        />
+        <Text color={colors.white} fontSize="lg" fontWeight="bold">
+          Log In
+        </Text>
       </Button>
       <OrDivider />
       <Button
