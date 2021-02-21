@@ -1,6 +1,6 @@
 import React from "react";
-import CustomLogin from "./auth/CustomLogin";
-import Routes from "./nav/routes";
+import ProtectedRoutes from "./nav/ProtectedRoutes";
+import UnprotectedRoutes from "./nav/UnprotectedRoutes";
 import NavFab from "./components/NavFab";
 import { StatusBar, SafeAreaView } from "react-native";
 import styled from "styled-components";
@@ -66,10 +66,10 @@ const App = () => {
       <StatusBar barStyle={"dark-content"} />
       <FlexSafeAreaView>
         {!user ? (
-          <CustomLogin />
+          <UnprotectedRoutes />
         ) : (
           <ApolloProvider client={client}>
-            <Routes />
+            <ProtectedRoutes />
             <NavFab />
           </ApolloProvider>
         )}

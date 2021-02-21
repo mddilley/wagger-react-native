@@ -14,7 +14,7 @@ What can I say? I love dogs!
 - AWS Cognito and Amplify for authorization and authentication
 - AWS Lambda for data events
 - Magnus UI for building the UI
-- React Hook Form and Yup for forms
+- React Hook Form and Yup for forms and validation
 
 ## Back End
 

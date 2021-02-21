@@ -9,7 +9,7 @@ import InputErrorText from "../components/InputErrorText";
 import { colors } from "../styles/colors";
 
 const schema = yup.object().shape({
-  email: yup.string().min(1).required().email(),
+  email: yup.string().required().email(),
   password: yup.string().required(),
 });
 
