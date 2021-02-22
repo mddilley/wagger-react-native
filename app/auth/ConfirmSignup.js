@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,7 +13,6 @@ const schema = yup.object().shape({
 });
 
 const CustomSignup = ({ username }) => {
-  console.log("Confirm view", username);
   const { handleSubmit, control, errors } = useForm({
     resolver: yupResolver(schema),
   });
@@ -36,7 +35,7 @@ const CustomSignup = ({ username }) => {
   const onSubmit = (data) => {
     const { confirmCode } = data;
 
-    confirmSignup(email, confirmCode);
+    confirmSignup(username, confirmCode);
   };
 
   return (
@@ -48,7 +47,7 @@ const CustomSignup = ({ username }) => {
           <Input
             mt="sm"
             py="lg"
-            placeholder="Email Address"
+            placeholder="Confirmation Code"
             autoCapitalize="none"
             value={value}
             autoCompleteType="email"
@@ -56,7 +55,7 @@ const CustomSignup = ({ username }) => {
             onBlur={onBlur}
             onChangeText={(value) => onChange(value)}
             suffix={
-              <Icon fontFamily="MaterialIcons" name="email" fontSize="3xl" />
+              <Icon fontFamily="MaterialIcons" name="lock" fontSize="3xl" />
             }
           />
         )}

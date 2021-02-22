@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import OrDivider from "./OrDivider";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -15,7 +15,7 @@ const schema = yup.object().shape({
   password: passwordValidation,
 });
 
-export const signIn = async ({ email, password }) => {
+const signIn = async ({ email, password }) => {
   try {
     await Auth.signIn(email, password);
   } catch (error) {

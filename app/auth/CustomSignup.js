@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import OrDivider from "./OrDivider";
 import { Auth } from "aws-amplify";
-import { signIn } from "./CustomLogin";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
