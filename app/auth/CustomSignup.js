@@ -10,6 +10,7 @@ import { Button, Div, Input, Icon, Text } from "react-native-magnus";
 import InputErrorText from "../components/InputErrorText";
 import { colors } from "../styles/colors";
 import { handleNavPress } from "../nav/navHandlers";
+import { Actions } from "react-native-router-flux";
 
 const schema = yup.object().shape({
   email: yup.string().required().email(),
@@ -25,7 +26,10 @@ const CustomSignup = () => {
     resolver: yupResolver(schema),
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const signUp = async (email, password) => {
+    setIsLoading(true);
     try {
       const { user } = await Auth.signUp({
         username: email,
@@ -33,11 +37,14 @@ const CustomSignup = () => {
         attributes: {
           email,
         },
+      }).then(() => {
+        setIsLoading(false);
+        Actions.confirmSignup();
       });
       console.log(user);
-      signIn(email, password);
     } catch (error) {
       console.log("error signing up:", error);
+      setIsLoading(false);
     }
   };
 
@@ -137,7 +144,12 @@ const CustomSignup = () => {
         fontSize="lg"
         onPress={() => handleNavPress("login")}
       >
-        <Text color={colors.white} fontSize="lg" fontWeight="bold">
+        <Text
+          color={colors.white}
+          fontSize="lg"
+          fontWeight="bold"
+          loading={isLoading}
+        >
           Login
         </Text>
       </Button>
