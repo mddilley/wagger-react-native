@@ -39,7 +39,7 @@ const CustomSignup = () => {
         },
       }).then(() => {
         setIsLoading(false);
-        Actions.confirmSignup();
+        Actions.push("confirmSignup", { username: email });
       });
       console.log(user);
     } catch (error) {
