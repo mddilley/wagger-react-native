@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AuthButton from "./authComponents/AuthButton";
 import OrDivider from "./authComponents/OrDivider";
 import { Auth } from "aws-amplify";
 import { useForm, Controller } from "react-hook-form";
@@ -120,38 +121,13 @@ const CustomSignup = () => {
         defaultValue=""
       />
       <InputErrorText errors={errors?.confirmPassword} />
-      <Button
-        bg={colors.main}
-        block
-        py="lg"
-        my="xl"
-        px="lg"
-        fontSize="lg"
+      <AuthButton
+        text={"Sign Up"}
         onPress={handleSubmit(onSubmit)}
-      >
-        <Text color={colors.white} fontSize="lg" fontWeight="bold">
-          Sign Up
-        </Text>
-      </Button>
+        isLoading={isLoading}
+      />
       <OrDivider />
-      <Button
-        bg={colors.main}
-        block
-        py="lg"
-        my="xl"
-        px="lg"
-        fontSize="lg"
-        onPress={() => handleNavPress("login")}
-      >
-        <Text
-          color={colors.white}
-          fontSize="lg"
-          fontWeight="bold"
-          loading={isLoading}
-        >
-          Login
-        </Text>
-      </Button>
+      <AuthButton text={"Login"} onPress={() => handleNavPress("login")} />
     </Div>
   );
 };

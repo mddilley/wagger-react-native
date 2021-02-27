@@ -1,32 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import AuthButton from "./authComponents/AuthButton";
 import OrDivider from "./authComponents/OrDivider";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { passwordValidation } from "../auth/validation";
 import { Auth } from "aws-amplify";
-import { Button, Div, Input, Icon, Text } from "react-native-magnus";
+import { Div, Input, Icon, Text } from "react-native-magnus";
 import InputErrorText from "../components/InputErrorText";
 import { handleNavPress } from "../nav/navHandlers";
-import { colors } from "../styles/colors";
 
 const schema = yup.object().shape({
   email: yup.string().required().email(),
   password: passwordValidation,
 });
 
-const signIn = async ({ email, password }) => {
-  try {
-    await Auth.signIn(email, password);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const CustomLogin = () => {
   const { handleSubmit, control, errors } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const signIn = async ({ email, password }) => {
+    setIsLoading(true);
+    try {
+      await Auth.signIn(email, password);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
 
   const onSubmit = (data) => {
     const { email, password } = data;
@@ -81,33 +86,13 @@ const CustomLogin = () => {
         defaultValue=""
       />
       <InputErrorText errors={errors?.password} />
-      <Button
-        bg={colors.main}
-        block
-        py="lg"
-        my="xl"
-        px="lg"
-        fontSize="lg"
+      <AuthButton
+        text={"Log In"}
         onPress={handleSubmit(onSubmit)}
-      >
-        <Text color={colors.white} fontSize="lg" fontWeight="bold">
-          Log In
-        </Text>
-      </Button>
+        isLoading={isLoading}
+      />
       <OrDivider />
-      <Button
-        bg={colors.main}
-        block
-        py="lg"
-        my="xl"
-        px="lg"
-        fontSize="lg"
-        onPress={() => handleNavPress("signup")}
-      >
-        <Text color={colors.white} fontSize="lg" fontWeight="bold">
-          Sign Up
-        </Text>
-      </Button>
+      <AuthButton text={"Sign Up"} onPress={() => handleNavPress("signup")} />
     </Div>
   );
 };
