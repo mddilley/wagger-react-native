@@ -4,7 +4,7 @@ import { Auth } from "aws-amplify";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Button, Div, Input, Icon, Text } from "react-native-magnus";
+import { Div, Input, Icon, Text } from "react-native-magnus";
 import InputErrorText from "../components/InputErrorText";
 import { colors } from "../styles/colors";
 import { Actions } from "react-native-router-flux";
@@ -41,7 +41,10 @@ const CustomSignup = ({ username }) => {
 
   return (
     <Div m="lg" px="xl">
-      <Text color="gray500" mt="sm"></Text>
+      <Text color={colors.secondary} mt="sm">
+        You will receive an email with a confirmation code. Please enter below
+        to confirm your signup.
+      </Text>
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (

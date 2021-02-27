@@ -6,9 +6,8 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { passwordValidation } from "../auth/validation";
-import { Button, Div, Input, Icon, Text } from "react-native-magnus";
+import { Div, Input, Icon } from "react-native-magnus";
 import InputErrorText from "../components/InputErrorText";
-import { colors } from "../styles/colors";
 import { handleNavPress } from "../nav/navHandlers";
 import { Actions } from "react-native-router-flux";
 
@@ -56,7 +55,6 @@ const CustomSignup = () => {
 
   return (
     <Div m="lg" px="xl">
-      <Text color="gray500" mt="sm"></Text>
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
