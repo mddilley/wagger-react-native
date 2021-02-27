@@ -1,7 +1,7 @@
 import React from "react";
 import { Div, Icon, Text } from "react-native-magnus";
-import { colors } from "../styles/colors";
-import images from "../assets/index";
+import { colors } from "../../styles/colors";
+import images from "../../assets/index";
 
 const AuthLogo = () => (
   <Div bg={colors.white} px="xl" pt="lg">

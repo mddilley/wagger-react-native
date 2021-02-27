@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AuthButton from "./authComponents/AuthButton";
 import { Auth } from "aws-amplify";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -63,17 +64,11 @@ const CustomSignup = ({ username }) => {
         defaultValue=""
       />
       <InputErrorText errors={errors?.confirmCode} />
-      <Button bg={colors.main} block py="lg" my="xl" px="lg" fontSize="lg">
-        <Text
-          color={colors.white}
-          fontSize="lg"
-          fontWeight="bold"
-          loading={isLoading}
-          onPress={handleSubmit(onSubmit)}
-        >
-          Confirm Signup
-        </Text>
-      </Button>
+      <AuthButton
+        text={"Confirm Signup"}
+        onPress={handleSubmit(onSubmit)}
+        isLoading={isLoading}
+      />
     </Div>
   );
 };

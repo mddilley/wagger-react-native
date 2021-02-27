@@ -1,5 +1,5 @@
 import React from "react";
-import AuthLogo from "../auth/AuthLogo";
+import AuthLogo from "../auth/authComponents/AuthLogo";
 import CustomLogin from "../auth/CustomLogin";
 import CustomSignup from "../auth/CustomSignup";
 import ConfirmSignup from "../auth/ConfirmSignup";

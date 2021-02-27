@@ -1,6 +1,6 @@
 import React from "react";
 import { Div, Text } from "react-native-magnus";
-import { colors } from "../styles/colors";
+import { colors } from "../../styles/colors";
 
 const OrDivider = () => (
   <Div mx="xl" alignItems="center" justifyContent="center" flexDir="row">
