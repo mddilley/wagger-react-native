@@ -1,4 +1,5 @@
 import React from "react";
+import { format } from "date-fns";
 import { useQuery } from "@apollo/client";
 import { useForm, Controller } from "react-hook-form";
 import { GET_USER } from "../queries/users";
@@ -34,14 +35,16 @@ const Profile = () => {
     <Loader />
   ) : (
     <Div m="lg" p="xl">
-      <Text>
-        <Icon fontFamily="MaterialIcons" name="email" fontSize="3xl" />{" "}
-        {user.email}
-      </Text>
-      <Text>
-        <Icon fontFamily="Feather" name="calendar" fontSize="3xl" />{" "}
-        {user.join_date}
-      </Text>
+      <Div row mt="lg">
+        <Icon fontFamily="MaterialIcons" name="email" fontSize="3xl" />
+        <Text ml="lg">{user.email}</Text>
+      </Div>
+      <Div row mt="lg">
+        <Icon fontFamily="Feather" name="calendar" fontSize="3xl" />
+        <Text ml="lg">
+          You joined on {format(new Date(user.join_date), "MMMM d, yyyy")}
+        </Text>
+      </Div>
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (

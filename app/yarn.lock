@@ -4223,6 +4223,11 @@
     "css-color-keywords" "^1.0.0"
     "postcss-value-parser" "^4.0.2"
 
+"date-fns@^2.17.0":
+  "integrity" "sha512-ZEhqxUtEZeGgg9eHNSOAJ8O9xqSgiJdrL0lzSSfMF54x6KXWJiOH/xntSJ9YomJPrYH/p08t6gWjGWq1SDJlSA=="
+  "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.17.0.tgz"
+  "version" "2.17.0"
+
 "dayjs@^1.8.15":
   "integrity" "sha512-HngNLtPEBWRo8EFVmHFmSXAjtCX8rGNqeXQI0Gh7wCTSqwaKgPIDqu9m07wABVopNwzvOeCb+2711vQhDlcIXw=="
   "resolved" "https://registry.yarnpkg.com/dayjs/-/dayjs-1.9.6.tgz"
