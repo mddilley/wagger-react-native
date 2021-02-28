@@ -2,7 +2,7 @@ import React from "react";
 import { Div, Text } from "react-native-magnus";
 import { colors } from "../../styles/colors";
 
-const MyDogsItem = ({ name, age, sex, details }) => (
+const MyDogsItem = ({ name, birthdate, sex, details }) => (
   <Div
     rounded="xl"
     shadow="md"
@@ -21,7 +21,7 @@ const MyDogsItem = ({ name, age, sex, details }) => (
           {name}
         </Text>
         <Text fontSize="xl" color={colors.secondary}>
-          {age} years old
+          {birthdate} years old
         </Text>
         <Text fontSize="xl" color={colors.secondary}>
           {sex}
