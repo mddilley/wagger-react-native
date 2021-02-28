@@ -1,9 +1,10 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
+import { useForm, Controller } from "react-hook-form";
 import { GET_USER } from "../queries/users";
 import { Auth } from "aws-amplify";
 import { useUserSession } from "../auth/userSession";
-import { Button, Div, Text } from "react-native-magnus";
+import { Button, Div, Icon, Input, Text } from "react-native-magnus";
 import Loader from "../components/Loader";
 import { colors } from "../styles/colors";
 
@@ -20,8 +21,11 @@ const Profile = () => {
   const email = getUserEmail();
 
   const { loading, error, data } = useQuery(GET_USER, { variables: { email } });
-
   const user = data?.Users?.[0];
+
+  const { handleSubmit, control, errors } = useForm({
+    defaultValues: user,
+  });
 
   // Get JWT for connection testing
   console.log(getUserJwt());
@@ -30,7 +34,65 @@ const Profile = () => {
     <Loader />
   ) : (
     <Div m="lg" p="xl">
-      <Text>{user.email}</Text>
+      <Text>
+        <Icon fontFamily="MaterialIcons" name="email" fontSize="3xl" />{" "}
+        {user.email}
+      </Text>
+      <Text>
+        <Icon fontFamily="Feather" name="calendar" fontSize="3xl" />{" "}
+        {user.join_date}
+      </Text>
+      <Controller
+        control={control}
+        render={({ onChange, onBlur, value }) => (
+          <Input
+            mt="xl"
+            py="lg"
+            placeholder="First Name"
+            secureTextEntry
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            autoCorrect={false}
+            value={value}
+          />
+        )}
+        name="first_name"
+        defaultValue=""
+      />
+      <Controller
+        control={control}
+        render={({ onChange, onBlur, value }) => (
+          <Input
+            mt="xl"
+            py="lg"
+            placeholder="Last Name"
+            secureTextEntry
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            autoCorrect={false}
+            value={value}
+          />
+        )}
+        name="first_name"
+        defaultValue=""
+      />
+      <Controller
+        control={control}
+        render={({ onChange, onBlur, value }) => (
+          <Input
+            mt="xl"
+            py="lg"
+            placeholder="Age"
+            secureTextEntry
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            autoCorrect={false}
+            value={value}
+          />
+        )}
+        name="age"
+        defaultValue=""
+      />
       <Button
         bg={colors.danger}
         block
