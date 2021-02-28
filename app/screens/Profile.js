@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { GET_USERS } from "../queries/users";
+import { GET_USER } from "../queries/users";
 import { Auth } from "aws-amplify";
 import { useUserSession } from "../auth/userSession";
 import { Button, Div, Text } from "react-native-magnus";
@@ -17,9 +17,11 @@ const signOut = async () => {
 
 const Profile = () => {
   const { getUserJwt, getUserEmail } = useUserSession();
-  const userEmail = getUserEmail();
+  const email = getUserEmail();
 
-  const { loading, error, data } = useQuery(GET_USERS);
+  const { loading, error, data } = useQuery(GET_USER, { variables: { email } });
+
+  const user = data?.Users?.[0];
 
   // Get JWT for connection testing
   console.log(getUserJwt());
@@ -28,7 +30,7 @@ const Profile = () => {
     <Loader />
   ) : (
     <Div m="lg" p="xl">
-      <Text>{userEmail}</Text>
+      <Text>{user.email}</Text>
       <Button
         bg={colors.danger}
         block
