@@ -42,7 +42,7 @@ const Profile = () => {
       <Div row mt="lg">
         <Icon fontFamily="Feather" name="calendar" fontSize="3xl" />
         <Text ml="lg">
-          You joined on {format(new Date(user.join_date), "MMMM d, yyyy")}
+          You joined on {format(new Date(user.join_date), "MMMM d, yyyy  🎉")}
         </Text>
       </Div>
       <Controller
