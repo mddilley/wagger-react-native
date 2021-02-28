@@ -1,17 +1,32 @@
 import React from "react";
+import { useQuery } from "@apollo/client";
+import { useUserSession } from "../../auth/userSession";
 import MyDogsItem from "./MyDogsItem";
+import Loader from "../../components/Loader";
 import { Div } from "react-native-magnus";
+import { GET_DOGS } from "../../queries/dogs";
 
 const MyDogs = () => {
-  return (
+  const { getUserEmail } = useUserSession();
+  const email = getUserEmail();
+
+  const { loading, error, data } = useQuery(GET_DOGS, { variables: { email } });
+  const dogs = data?.Dogs;
+
+  return loading ? (
+    <Loader />
+  ) : (
     <Div>
       <Div m="xl" row>
-        <MyDogsItem
-          name={"Benjamin"}
-          birthdate={"2009-01-10"}
-          sex={"Male"}
-          details={"The goodest boy"}
-        />
+        {dogs.map((dog) => (
+          <MyDogsItem
+            key={dog.id}
+            name={dog.name}
+            birthdate={dog.birthdate}
+            sex={dog.sex}
+            weight={dog.weight}
+          />
+        ))}
       </Div>
     </Div>
   );
