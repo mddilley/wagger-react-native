@@ -1,6 +1,6 @@
 import Home from "../screens/Home";
 import AllPlaydates from "../screens/AllPlaydates";
-import MyDogs from "../screens/MyDogs";
+import MyDogs from "../screens/Dogs/MyDogs";
 import MyPlaydates from "../screens/MyPlaydates";
 import PastPlaydates from "../screens/PastPlaydates";
 import Profile from "../screens/Profile";
@@ -18,7 +18,7 @@ export const routesConfig = {
   myDogs: {
     title: "My Dogs",
     component: MyDogs,
-    navText: "My Dogs",
+    navText: "My dogs",
     isFab: true,
     iconFontFamily: "MaterialCommunityIcons",
     icon: "dog-side",
