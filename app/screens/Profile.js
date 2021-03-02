@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { format } from "date-fns";
 import { useQuery } from "@apollo/client";
 import { useForm, Controller } from "react-hook-form";
 import { GET_USER } from "../queries/users";
 import { Auth } from "aws-amplify";
 import { useUserSession } from "../auth/userSession";
-import { Button, Div, Icon, Input, Text } from "react-native-magnus";
+import { Button, Div, Icon, Input, Select, Text } from "react-native-magnus";
 import Loader from "../components/Loader";
 import { colors } from "../styles/colors";
+import { US_STATES } from "../content/unitedStates";
 
 const signOut = async () => {
   try {
@@ -24,12 +25,16 @@ const Profile = () => {
   const { loading, error, data } = useQuery(GET_USER, { variables: { email } });
   const user = data?.Users?.[0];
 
-  const { handleSubmit, control, errors } = useForm({
+  const { handleSubmit, control, errors, setValue, getValues } = useForm({
     defaultValues: user,
   });
 
   // Get JWT for connection testing
   console.log(getUserJwt());
+
+  const selectRef = React.createRef();
+
+  console.log(selectRef);
 
   return loading ? (
     <Loader />
@@ -116,14 +121,35 @@ const Profile = () => {
             mt="xl"
             py="lg"
             placeholder="State"
-            onBlur={onBlur}
+            // onBlur={onBlur}
+            onFocus={() => {
+              if (selectRef.current) {
+                selectRef.current.open();
+              }
+            }}
             onChangeText={(value) => onChange(value)}
             autoCorrect={false}
-            value={value}
+            value={getValues("state")}
           />
         )}
-        name="state"
+        name="states"
         defaultValue=""
+      />
+      <Select
+        onSelect={() => setValue("states", "test")}
+        ref={selectRef}
+        value={getValues("state")}
+        title="States"
+        mt="md"
+        pb="2xl"
+        message="Select your state"
+        roundedTop="xl"
+        data={[1, 2, 3]}
+        renderItem={(item) => (
+          <Select.Option value={item} py="md" px="xl">
+            <Text>{item}</Text>
+          </Select.Option>
+        )}
       />
       <Controller
         control={control}

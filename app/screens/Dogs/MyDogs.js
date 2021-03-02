@@ -18,9 +18,8 @@ const MyDogs = () => {
   ) : (
     <Div>
       {dogs.map((dog) => (
-        <Div mt="xl" mx="xl" row>
+        <Div key={dog.id} mt="xl" mx="xl" row>
           <MyDogsItem
-            key={dog.id}
             name={dog.name}
             birthdate={dog.birthdate}
             sex={dog.sex}
