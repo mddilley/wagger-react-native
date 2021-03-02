@@ -52,7 +52,6 @@ const Profile = () => {
             mt="xl"
             py="lg"
             placeholder="First Name"
-            secureTextEntry
             onBlur={onBlur}
             onChangeText={(value) => onChange(value)}
             autoCorrect={false}
@@ -69,7 +68,6 @@ const Profile = () => {
             mt="xl"
             py="lg"
             placeholder="Last Name"
-            secureTextEntry
             onBlur={onBlur}
             onChangeText={(value) => onChange(value)}
             autoCorrect={false}
@@ -86,7 +84,6 @@ const Profile = () => {
             mt="xl"
             py="lg"
             placeholder="Age"
-            secureTextEntry
             onBlur={onBlur}
             onChangeText={(value) => onChange(value)}
             autoCorrect={false}
@@ -96,6 +93,55 @@ const Profile = () => {
         name="age"
         defaultValue=""
       />
+      <Controller
+        control={control}
+        render={({ onChange, onBlur, value }) => (
+          <Input
+            mt="xl"
+            py="lg"
+            placeholder="City"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            autoCorrect={false}
+            value={value}
+          />
+        )}
+        name="city"
+        defaultValue=""
+      />
+      <Controller
+        control={control}
+        render={({ onChange, onBlur, value }) => (
+          <Input
+            mt="xl"
+            py="lg"
+            placeholder="State"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            autoCorrect={false}
+            value={value}
+          />
+        )}
+        name="state"
+        defaultValue=""
+      />
+      <Controller
+        control={control}
+        render={({ onChange, onBlur, value }) => (
+          <Input
+            mt="xl"
+            py="lg"
+            placeholder="About"
+            onBlur={onBlur}
+            onChangeText={(value) => onChange(value)}
+            autoCorrect={false}
+            value={value}
+          />
+        )}
+        name="about"
+        defaultValue=""
+      />
+
       <Button
         bg={colors.danger}
         block

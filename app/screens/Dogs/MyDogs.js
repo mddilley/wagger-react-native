@@ -17,8 +17,8 @@ const MyDogs = () => {
     <Loader />
   ) : (
     <Div>
-      <Div m="xl" row>
-        {dogs.map((dog) => (
+      {dogs.map((dog) => (
+        <Div mt="xl" mx="xl" row>
           <MyDogsItem
             key={dog.id}
             name={dog.name}
@@ -26,8 +26,8 @@ const MyDogs = () => {
             sex={dog.sex}
             weight={dog.weight}
           />
-        ))}
-      </Div>
+        </Div>
+      ))}
     </Div>
   );
 };
