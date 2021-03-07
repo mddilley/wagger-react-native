@@ -5,7 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import { GET_USER } from "../queries/users";
 import { Auth } from "aws-amplify";
 import { useUserSession } from "../auth/userSession";
-import { Button, Div, Icon, Input, Select, Text } from "react-native-magnus";
+import { Button, Div, Icon, Input, Text } from "react-native-magnus";
 import Loader from "../components/Loader";
 import { colors } from "../styles/colors";
 import { US_STATES } from "../content/unitedStates";
@@ -31,10 +31,6 @@ const Profile = () => {
 
   // Get JWT for connection testing
   console.log(getUserJwt());
-
-  const selectRef = React.createRef();
-
-  console.log(selectRef);
 
   return loading ? (
     <Loader />
@@ -114,43 +110,7 @@ const Profile = () => {
         name="city"
         defaultValue=""
       />
-      <Controller
-        control={control}
-        render={({ onChange, onBlur, value }) => (
-          <Input
-            mt="xl"
-            py="lg"
-            placeholder="State"
-            // onBlur={onBlur}
-            onFocus={() => {
-              if (selectRef.current) {
-                selectRef.current.open();
-              }
-            }}
-            onChangeText={(value) => onChange(value)}
-            autoCorrect={false}
-            value={getValues("state")}
-          />
-        )}
-        name="states"
-        defaultValue=""
-      />
-      <Select
-        onSelect={() => setValue("states", "test")}
-        ref={selectRef}
-        value={getValues("state")}
-        title="States"
-        mt="md"
-        pb="2xl"
-        message="Select your state"
-        roundedTop="xl"
-        data={[1, 2, 3]}
-        renderItem={(item) => (
-          <Select.Option value={item} py="md" px="xl">
-            <Text>{item}</Text>
-          </Select.Option>
-        )}
-      />
+
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
