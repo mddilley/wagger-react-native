@@ -1,21 +1,33 @@
 import React, { useMemo, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { useMutation } from "@apollo/client";
 import { UPDATE_USER } from "../../queries/users";
 import AuthButton from "../../auth/authComponents/AuthButton";
+import InputErrorText from "../../components/InputErrorText";
 import { Input } from "react-native-magnus";
 import RNPickerSelect from "react-native-picker-select";
 import { US_STATES } from "../../content/unitedStates";
 
+const schema = yup.object().shape({
+  first_name: yup.string().required(),
+  last_name: yup.string().required(),
+  age: yup.number().required(),
+  city: yup.string().required(),
+  state: yup.string().required(),
+});
+
 const ProfileForm = ({ user, refetch }) => {
   const { handleSubmit, control, errors, setValue } = useForm({
     defaultValues: user,
+    resolver: yupResolver(schema),
   });
+
   const [
     updateUser,
     { loading: mutationLoading, error: mutationError },
   ] = useMutation(UPDATE_USER);
-  console.log({ user });
 
   const selectRef = useRef();
 
@@ -29,7 +41,6 @@ const ProfileForm = ({ user, refetch }) => {
   );
 
   const onSubmit = (data) => {
-    // TODO Require all fields
     updateUser({
       variables: { updated_user: data, email: user.email },
     }).then(() => refetch());
@@ -52,6 +63,7 @@ const ProfileForm = ({ user, refetch }) => {
         )}
         name="first_name"
       />
+      <InputErrorText errors={errors?.first_name} />
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
@@ -67,6 +79,7 @@ const ProfileForm = ({ user, refetch }) => {
         )}
         name="last_name"
       />
+      <InputErrorText errors={errors?.last_name} />
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
@@ -82,6 +95,7 @@ const ProfileForm = ({ user, refetch }) => {
         )}
         name="age"
       />
+      <InputErrorText errors={errors?.age} />
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
@@ -97,6 +111,7 @@ const ProfileForm = ({ user, refetch }) => {
         )}
         name="city"
       />
+      <InputErrorText errors={errors?.city} />
       <Controller
         control={control}
         render={({ value }) => (
@@ -126,6 +141,7 @@ const ProfileForm = ({ user, refetch }) => {
         )}
         name="state"
       />
+      <InputErrorText errors={errors?.state} />
       <Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
@@ -141,6 +157,7 @@ const ProfileForm = ({ user, refetch }) => {
         )}
         name="about"
       />
+      <InputErrorText errors={errors?.about} />
       <AuthButton
         text={"Update"}
         onPress={handleSubmit(onSubmit)}
