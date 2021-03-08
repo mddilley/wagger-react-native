@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useMemo, useRef } from "react";
 import { format } from "date-fns";
 import { useQuery } from "@apollo/client";
 import { useForm, Controller } from "react-hook-form";
@@ -6,6 +6,7 @@ import { GET_USER } from "../queries/users";
 import { Auth } from "aws-amplify";
 import { useUserSession } from "../auth/userSession";
 import { Button, Div, Icon, Input, Text } from "react-native-magnus";
+import RNPickerSelect from "react-native-picker-select";
 import Loader from "../components/Loader";
 import { colors } from "../styles/colors";
 import { US_STATES } from "../content/unitedStates";
@@ -28,6 +29,18 @@ const Profile = () => {
   const { handleSubmit, control, errors, setValue, getValues } = useForm({
     defaultValues: user,
   });
+  console.log(user);
+
+  const selectRef = useRef();
+
+  const stateOptions = useMemo(
+    () =>
+      Object.values(US_STATES).reduce(
+        (acc, state) => [...acc, { label: state, value: state }],
+        []
+      ),
+    [US_STATES]
+  );
 
   // Get JWT for connection testing
   console.log(getUserJwt());
@@ -108,6 +121,37 @@ const Profile = () => {
           />
         )}
         name="city"
+        defaultValue=""
+      />
+
+      <Controller
+        control={control}
+        render={({ value }) => (
+          <>
+            <Input
+              mt="xl"
+              py="lg"
+              placeholder="State"
+              onFocus={() => {
+                if (selectRef.current) {
+                  selectRef.current.togglePicker(true);
+                }
+              }}
+              autoCorrect={false}
+              value={value}
+            />
+            <RNPickerSelect
+              ref={selectRef}
+              placeholder={{}}
+              // Hide the TextInput since we are showing value in Magnus UI input above
+              textInputProps={{ style: { height: 0, width: 0 } }}
+              onValueChange={(value) => setValue("state", value)}
+              items={stateOptions}
+              value={value}
+            />
+          </>
+        )}
+        name="state"
         defaultValue=""
       />
 
