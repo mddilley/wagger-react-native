@@ -1,4 +1,5 @@
 import React from "react";
+import { ScrollView } from "react-native";
 import { format } from "date-fns";
 import { useQuery } from "@apollo/client";
 import { GET_USER } from "../../queries/users";
@@ -32,31 +33,33 @@ const Profile = () => {
   return loading ? (
     <Loader />
   ) : (
-    <Div m="lg" p="xl">
-      <Div row mt="lg">
-        <Icon fontFamily="MaterialIcons" name="email" fontSize="3xl" />
-        <Text ml="lg">{user.email}</Text>
-      </Div>
-      <Div row mt="lg">
-        <Icon fontFamily="Feather" name="calendar" fontSize="3xl" />
-        <Text ml="lg">
-          You joined on {format(new Date(user.join_date), "MMMM d, yyyy  🎉")}
-        </Text>
-      </Div>
+    <ScrollView>
+      <Div m="lg" p="xl">
+        <Div row mt="lg">
+          <Icon fontFamily="MaterialIcons" name="email" fontSize="3xl" />
+          <Text ml="lg">{user.email}</Text>
+        </Div>
+        <Div row mt="lg">
+          <Icon fontFamily="Feather" name="calendar" fontSize="3xl" />
+          <Text ml="lg">
+            You joined on {format(new Date(user.join_date), "MMMM d, yyyy  🎉")}
+          </Text>
+        </Div>
 
-      <ProfileForm user={user} refetch={refetch} />
-      <Button
-        bg={colors.danger}
-        block
-        py="lg"
-        my="xl"
-        px="lg"
-        fontSize="lg"
-        onPress={signOut}
-      >
-        Sign out
-      </Button>
-    </Div>
+        <ProfileForm user={user} refetch={refetch} />
+        <Button
+          bg={colors.danger}
+          block
+          py="lg"
+          my="xl"
+          px="lg"
+          fontSize="lg"
+          onPress={signOut}
+        >
+          Sign out
+        </Button>
+      </Div>
+    </ScrollView>
   );
 };
 

@@ -11,11 +11,12 @@ import RNPickerSelect from "react-native-picker-select";
 import { US_STATES } from "../../content/unitedStates";
 
 const schema = yup.object().shape({
-  first_name: yup.string().required(),
-  last_name: yup.string().required(),
-  age: yup.number().required(),
-  city: yup.string().required(),
-  state: yup.string().required(),
+  first_name: yup.string().required().nullable(),
+  last_name: yup.string().required().nullable(),
+  age: yup.number().required().nullable(),
+  city: yup.string().required().nullable(),
+  state: yup.string().required().nullable(),
+  about: yup.string().required().nullable(),
 });
 
 const ProfileForm = ({ user, refetch }) => {
