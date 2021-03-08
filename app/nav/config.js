@@ -3,7 +3,7 @@ import AllPlaydates from "../screens/AllPlaydates";
 import MyDogs from "../screens/Dogs/MyDogs";
 import MyPlaydates from "../screens/MyPlaydates";
 import PastPlaydates from "../screens/PastPlaydates";
-import Profile from "../screens/Profile";
+import Profile from "../screens/Profile/Profile";
 
 export const routesConfig = {
   home: {
