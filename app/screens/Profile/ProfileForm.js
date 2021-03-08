@@ -6,7 +6,6 @@ import AuthButton from "../../auth/authComponents/AuthButton";
 import { Input } from "react-native-magnus";
 import RNPickerSelect from "react-native-picker-select";
 import { US_STATES } from "../../content/unitedStates";
-import InputErrorText from "../../components/InputErrorText";
 
 const ProfileForm = ({ user, refetch }) => {
   const { handleSubmit, control, errors, setValue } = useForm({
@@ -31,7 +30,9 @@ const ProfileForm = ({ user, refetch }) => {
 
   const onSubmit = (data) => {
     // TODO Require all fields
-    updateUser({ variables: { updated_user: data, email: user.email } });
+    updateUser({
+      variables: { updated_user: data, email: user.email },
+    }).then(() => refetch());
   };
 
   return (
@@ -50,7 +51,6 @@ const ProfileForm = ({ user, refetch }) => {
           />
         )}
         name="first_name"
-        defaultValue=""
       />
       <Controller
         control={control}
@@ -66,7 +66,6 @@ const ProfileForm = ({ user, refetch }) => {
           />
         )}
         name="last_name"
-        defaultValue=""
       />
       <Controller
         control={control}
@@ -82,7 +81,6 @@ const ProfileForm = ({ user, refetch }) => {
           />
         )}
         name="age"
-        defaultValue=""
       />
       <Controller
         control={control}
@@ -98,7 +96,6 @@ const ProfileForm = ({ user, refetch }) => {
           />
         )}
         name="city"
-        defaultValue=""
       />
       <Controller
         control={control}
@@ -128,7 +125,6 @@ const ProfileForm = ({ user, refetch }) => {
           </>
         )}
         name="state"
-        defaultValue=""
       />
       <Controller
         control={control}
@@ -144,7 +140,6 @@ const ProfileForm = ({ user, refetch }) => {
           />
         )}
         name="about"
-        defaultValue=""
       />
       <AuthButton
         text={"Update"}
