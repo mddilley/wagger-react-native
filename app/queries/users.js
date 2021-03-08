@@ -31,3 +31,11 @@ export const GET_USER = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation UpdateUser($email: String, $updated_user: Users_set_input) {
+    update_Users(where: { email: { _eq: $email } }, _set: $updated_user) {
+      affected_rows
+    }
+  }
+`;

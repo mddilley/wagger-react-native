@@ -21,7 +21,9 @@ const Profile = () => {
   const { getUserJwt, getUserEmail } = useUserSession();
   const email = getUserEmail();
 
-  const { loading, error, data } = useQuery(GET_USER, { variables: { email } });
+  const { loading, data, refetch } = useQuery(GET_USER, {
+    variables: { email },
+  });
   const user = data?.Users?.[0];
 
   // Get JWT for connection testing
@@ -42,7 +44,7 @@ const Profile = () => {
         </Text>
       </Div>
 
-      <ProfileForm user={user} />
+      <ProfileForm user={user} refetch={refetch} />
       <Button
         bg={colors.danger}
         block

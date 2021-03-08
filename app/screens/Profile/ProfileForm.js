@@ -1,14 +1,21 @@
 import React, { useMemo, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { useMutation } from "@apollo/client";
+import { UPDATE_USER } from "../../queries/users";
 import AuthButton from "../../auth/authComponents/AuthButton";
 import { Input } from "react-native-magnus";
 import RNPickerSelect from "react-native-picker-select";
 import { US_STATES } from "../../content/unitedStates";
+import InputErrorText from "../../components/InputErrorText";
 
-const ProfileForm = ({ user }) => {
+const ProfileForm = ({ user, refetch }) => {
   const { handleSubmit, control, errors, setValue } = useForm({
     defaultValues: user,
   });
+  const [
+    updateUser,
+    { loading: mutationLoading, error: mutationError },
+  ] = useMutation(UPDATE_USER);
   console.log({ user });
 
   const selectRef = useRef();
@@ -22,7 +29,10 @@ const ProfileForm = ({ user }) => {
     [US_STATES]
   );
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    // TODO Require all fields
+    updateUser({ variables: { updated_user: data, email: user.email } });
+  };
 
   return (
     <>
@@ -139,7 +149,7 @@ const ProfileForm = ({ user }) => {
       <AuthButton
         text={"Update"}
         onPress={handleSubmit(onSubmit)}
-        isLoading={false}
+        isLoading={mutationLoading}
       />
     </>
   );
