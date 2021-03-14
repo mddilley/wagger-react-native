@@ -9,7 +9,7 @@ import { transitionConfig } from "../nav/config";
 const UnprotectedRoutes = () => (
   <Router>
     <Scene header={<AuthLogo />} key="root" transitionConfig={transitionConfig}>
-      <Scene key="login" component={CustomLogin} />
+      <Scene key="login" component={CustomLogin} initial />
       <Scene key="signup" component={CustomSignup} />
       <Scene key="confirmSignup" component={ConfirmSignup} />
     </Scene>

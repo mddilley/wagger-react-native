@@ -6,18 +6,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { passwordValidation } from "../auth/validation";
 import { Auth } from "aws-amplify";
-import { Button, Div, Input, Icon, Modal, Text } from "react-native-magnus";
+import { Div, Input, Icon, Modal, Text } from "react-native-magnus";
 import { colors } from "../styles/colors";
 import ConfirmButton from "../components/ConfirmButton";
 import InputErrorText from "../components/InputErrorText";
 import { handleNavPress } from "../nav/navHandlers";
+import { messages } from "../content/messages";
 
 const schema = yup.object().shape({
   email: yup.string().required().email(),
   password: passwordValidation,
 });
 
-const CustomLogin = ({ isRedirectAfterSignup = true }) => {
+const CustomLogin = ({ isRedirectAfterSignup = false }) => {
   const { handleSubmit, control, errors } = useForm({
     resolver: yupResolver(schema),
   });
@@ -98,7 +99,7 @@ const CustomLogin = ({ isRedirectAfterSignup = true }) => {
       />
       <OrDivider />
       <AuthButton text={"Sign Up"} onPress={() => handleNavPress("signup")} />
-      <Modal isVisible={isSignupModalVisible} h="20%">
+      <Modal isVisible={isSignupModalVisible} h="18%">
         <Div
           bg={colors.white}
           flexWrap="wrap"
@@ -117,14 +118,14 @@ const CustomLogin = ({ isRedirectAfterSignup = true }) => {
             color={colors.secondary}
             textAlign="center"
           >
-            Thanks for signing up! Please log in to continue.
+            {messages.signup.after}
           </Text>
           <ConfirmButton
             color={colors.main}
             onPress={() => {
               setIsSignupModalVisible(false);
             }}
-            text={"Let's do it! 👍"}
+            text={messages.button.confirm}
           />
         </Div>
       </Modal>

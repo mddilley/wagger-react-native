@@ -4,4 +4,10 @@ export const messages = {
     missingUserInfo: `It looks like this is your first rodeo. 🤠 Let's get some details
     that will help match you up and get your dog some new friends!`,
   },
+  signup: {
+    after: `Thanks for signing up! Please log in to continue.`,
+  },
+  button: {
+    confirm: `Let's do it! 👍`,
+  },
 };

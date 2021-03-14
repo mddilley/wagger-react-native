@@ -1,5 +1,6 @@
 import React from "react";
-import { Div, Icon, Text, Button } from "react-native-magnus";
+import { Div, Text } from "react-native-magnus";
+import ConfirmButton from "../components/ConfirmButton";
 import { messages } from "../content/messages";
 import { colors } from "../styles/colors";
 import { handleNavPress } from "../nav/navHandlers";
@@ -59,7 +60,7 @@ const Home = () => {
             <ConfirmButton
               color={colors.main}
               onPress={() => handleNavPress("profile")}
-              text={"Let's do it! 👍"}
+              text={messages.button.confirm}
             />
           </Div>
         </Div>
