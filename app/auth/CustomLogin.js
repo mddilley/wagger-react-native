@@ -8,6 +8,7 @@ import { passwordValidation } from "../auth/validation";
 import { Auth } from "aws-amplify";
 import { Button, Div, Input, Icon, Modal, Text } from "react-native-magnus";
 import { colors } from "../styles/colors";
+import ConfirmButton from "../components/ConfirmButton";
 import InputErrorText from "../components/InputErrorText";
 import { handleNavPress } from "../nav/navHandlers";
 
@@ -118,18 +119,13 @@ const CustomLogin = ({ isRedirectAfterSignup = true }) => {
           >
             Thanks for signing up! Please log in to continue.
           </Text>
-          <Button
-            bg={colors.main}
-            my="lg"
-            px="lg"
-            py="lg"
-            fontSize="lg"
+          <ConfirmButton
+            color={colors.main}
             onPress={() => {
               setIsSignupModalVisible(false);
             }}
-          >
-            Let's do it! 👍
-          </Button>
+            text={"Let's do it! 👍"}
+          />
         </Div>
       </Modal>
     </Div>

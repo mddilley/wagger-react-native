@@ -56,16 +56,11 @@ const Home = () => {
             {messages.home.missingUserInfo}
           </Text>
           <Div>
-            <Button
-              bg={colors.main}
-              my="lg"
-              px="lg"
-              py="lg"
-              fontSize="lg"
+            <ConfirmButton
+              color={colors.main}
               onPress={() => handleNavPress("profile")}
-            >
-              Let's do it! 👍
-            </Button>
+              text={"Let's do it! 👍"}
+            />
           </Div>
         </Div>
       </Div>
