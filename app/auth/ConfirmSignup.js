@@ -25,7 +25,7 @@ const CustomSignup = ({ username }) => {
     try {
       await Auth.confirmSignUp(username, code).then(() => {
         setIsLoading(false);
-        Actions.login();
+        Actions.push("login", { isRedirectAfterSignUp: true });
       });
     } catch (error) {
       console.log("error confirming sign up", error);

@@ -62,12 +62,9 @@ const Home = () => {
               px="lg"
               py="lg"
               fontSize="lg"
-              suffix={
-                <Icon name="arrowright" ml="md" fontSize="md" color="white" />
-              }
               onPress={() => handleNavPress("profile")}
             >
-              Let's do it
+              Let's do it! 👍
             </Button>
           </Div>
         </Div>

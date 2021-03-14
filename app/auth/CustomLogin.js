@@ -6,7 +6,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { passwordValidation } from "../auth/validation";
 import { Auth } from "aws-amplify";
-import { Div, Input, Icon, Text } from "react-native-magnus";
+import { Button, Div, Input, Icon, Modal, Text } from "react-native-magnus";
+import { colors } from "../styles/colors";
 import InputErrorText from "../components/InputErrorText";
 import { handleNavPress } from "../nav/navHandlers";
 
@@ -15,12 +16,15 @@ const schema = yup.object().shape({
   password: passwordValidation,
 });
 
-const CustomLogin = () => {
+const CustomLogin = ({ isRedirectAfterSignup = true }) => {
   const { handleSubmit, control, errors } = useForm({
     resolver: yupResolver(schema),
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isSignupModalVisible, setIsSignupModalVisible] = useState(
+    isRedirectAfterSignup
+  );
 
   const signIn = async ({ email, password }) => {
     setIsLoading(true);
@@ -93,6 +97,41 @@ const CustomLogin = () => {
       />
       <OrDivider />
       <AuthButton text={"Sign Up"} onPress={() => handleNavPress("signup")} />
+      <Modal isVisible={isSignupModalVisible} h="20%">
+        <Div
+          bg={colors.white}
+          flexWrap="wrap"
+          justifyContent="center"
+          alignItems="center"
+          rounded="md"
+          row
+          px="md"
+          py="lg"
+          m="lg"
+        >
+          <Text
+            fontSize="lg"
+            px="xl"
+            py="md"
+            color={colors.secondary}
+            textAlign="center"
+          >
+            Thanks for signing up! Please log in to continue.
+          </Text>
+          <Button
+            bg={colors.main}
+            my="lg"
+            px="lg"
+            py="lg"
+            fontSize="lg"
+            onPress={() => {
+              setIsSignupModalVisible(false);
+            }}
+          >
+            Let's do it! 👍
+          </Button>
+        </Div>
+      </Modal>
     </Div>
   );
 };
