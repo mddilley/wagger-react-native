@@ -25,8 +25,8 @@ const NavFab = () => {
         />
       }
       bg={colors.main}
-      h={50}
-      w={50}
+      h={60}
+      w={60}
     >
       {Object.entries(fabRouteConfigs).map(([key, config]) => (
         <Button
