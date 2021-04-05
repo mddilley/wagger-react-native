@@ -9,7 +9,6 @@ const AuthButton = ({ onPress, text, isLoading = null }) => (
     py="lg"
     my="xl"
     px="lg"
-    fontSize="lg"
     onPress={onPress}
     loading={isLoading}
   >

@@ -91,7 +91,7 @@ const ProfileForm = ({ user, refetch }) => {
             onBlur={onBlur}
             onChangeText={(value) => onChange(value)}
             autoCorrect={false}
-            value={value}
+            value={value.toString()}
           />
         )}
         name="age"
